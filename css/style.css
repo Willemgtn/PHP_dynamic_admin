@@ -1,0 +1,340 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.center {
+    max-width: 1280px;
+    padding: 0 2%;
+    margin: 0 auto;
+}
+
+.w33 {
+    width: 33.3%;
+    padding: 0 2%;
+}
+
+.w50 {
+    width: 50%;
+    padding: 0 2%;
+}
+
+.clear {
+    clear: both;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+/* Estilização do site */
+
+header {
+    background-color: #3D437A;
+    padding: 10px 0;
+}
+
+header .logo {
+    font-size: 25px;
+    text-transform: uppercase;
+    color: white;
+}
+
+header .logo a {
+    color: white;
+    text-decoration: none;
+}
+
+header.pageHeader nav {
+    list-style: none;
+}
+
+header.pageHeader nav li {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+header.pageHeader nav li a {
+    color: white;
+    text-decoration: none;
+    padding: 0 30px;
+    position: relative;
+
+}
+
+header.pageHeader nav li a::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: top left;
+    transition: transform 1s ease;
+}
+
+/* https://tobiasahlin.com/blog/css-trick-animating-link-underlines/ */
+header.pageHeader nav li a:hover::before {
+    transform: scaleX(1);
+}
+
+header.pageHeader nav {
+    margin-top: 6px;
+}
+
+header.pageHeader nav div.menu-btn {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .w50 {
+        width: 100%;
+    }
+
+    .w33 {
+        width: 100%;
+    }
+
+    header.pageHeader nav li a {
+        padding: 0 10px;
+    }
+
+    header.pageHeader nav ul {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    header.pageHeader nav div.menu-btn {
+        display: block;
+    }
+
+    header.pageHeader nav ul {
+        display: none;
+    }
+
+    /* nav.mobile {    display: block;}
+    nav.mobile ul { display: none;} */
+    header.pageHeader nav .menu-btn {
+        font-size: 1.5em;
+        color: white;
+        cursor: pointer;
+        padding-right: 0.5em;
+    }
+
+    header.pageHeader nav ul {
+        top: 50px;
+        left: 0;
+        z-index: 3;
+        position: absolute;
+        /* display: block; */
+        text-align: center;
+        width: 100%;
+        list-style: none;
+    }
+
+    header.pageHeader nav li {
+        font-size: 16px;
+        background-color: white;
+        border-bottom: 1px solid #ccc;
+        font-weight: 300;
+        display: block;
+    }
+
+    header.pageHeader nav li a {
+        color: #444;
+        text-decoration: none;
+        display: block;
+        padding: 1em 0 !important;
+    }
+
+    header.pageHeader nav li a::before {
+        background-color: #000;
+    }
+}
+
+
+section.banner-principal {
+    background-color: gainsboro;
+    width: 100%;
+    height: 500px;
+    background-image: url('./img/Landscape_mountain.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+section div.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+section.banner-principal form {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    width: 100%;
+    padding: 0 2%;
+}
+
+section.banner-principal form h2 {
+    color: white;
+    font-weight: 300;
+    font-size: 30px;
+    text-align: center;
+}
+
+section.banner-principal form input[type=email] {
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    color: #333;
+    font-size: 22px;
+    border-radius: 25px;
+    margin-top: 10px;
+    padding: 2% 5%;
+}
+
+section.banner-principal form input[type=submit] {
+    width: 100%;
+    height: 60px;
+    background-color: #00C59E;
+    color: white;
+    font-size: 22px;
+    border-radius: 25px;
+    margin-top: 10px;
+    padding: 2% 5%;
+    cursor: pointer;
+}
+
+section.descricao-autor {
+    padding: 30px 0;
+}
+
+section.descricao-autor h2 {
+    font-size: 25px;
+    font-weight: 400;
+    color: #444;
+}
+
+section.descricao-autor p {
+    font-size: 16px;
+    color: #444;
+    margin-top: 10px;
+}
+
+section.descricao-autor .img-placeholder {
+    width: 100%;
+    max-width: 300px;
+    /* background-color: rgba(0, 0, 0, 0.1); */
+
+    /* background-image: url('./img/default_profile.webp'); */
+}
+
+
+
+section.especialidades {
+    padding: 40px 0;
+    background: #E2E2E2;
+}
+
+section.especialidades h2.title {
+    font-size: 2em;
+    text-align: center;
+    font-weight: 400;
+    color: #999;
+}
+
+section.especialidades .box-especialidades {
+    margin: 20px 0;
+    text-align: center;
+}
+
+section.especialidades .box-especialidades h3 {
+    color: #404580;
+    font-size: 2.5em
+}
+
+section.especialidades .box-especialidades h3 i {
+    font-size: 3em;
+}
+
+section.especialidades .box-especialidades p {
+    text-align: justify;
+    margin-top: 0.5em;
+}
+
+section.extras {
+    padding: 30px 0;
+    background-color: #404580;
+}
+
+section.extras .title {
+    color: white;
+    font-weight: 300;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+
+section.extras .depoimentos-single {
+    padding: 1em 0;
+    border-bottom: 1em;
+}
+
+section.extras p.depoimentos-single {
+    font-size: 1em;
+    color: white;
+    font-weight: 300;
+}
+
+section.extras p.nome-autor {
+    font-size: 1em;
+    color: white;
+    margin-top: 0.5em;
+    font-weight: bold;
+}
+
+section.extras p {
+    color: white;
+}
+
+section.extras .servicos li {
+    color: white;
+    margin: 1.5em 1em;
+    font-weight: 300;
+}
+
+footer {
+    background-color: #313462;
+    padding: 2em;
+}
+
+footer p {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+footer.fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

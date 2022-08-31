@@ -1,0 +1,25 @@
+.success-box {
+    position: fixed;
+    right: 20px;
+    top: 60px;
+    padding: 15px 2%;
+    z-index: 10;
+    color: #008000;
+    background: #DFF2BF;
+    font-weight: bold;
+    font-size: 1em;
+
+}
+
+.error-box {
+    position: fixed;
+    right: 20px;
+    top: 60px;
+    padding: 15px 2%;
+    z-index: 10;
+    color: #070706;
+    background: rgb(207, 116, 131);
+    font-weight: bold;
+    font-size: 1em;
+
+}

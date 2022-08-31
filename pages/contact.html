@@ -1,0 +1,48 @@
+<div id="map"></div>
+
+<div class="contatoContainer">
+    <div class="center">
+        <form action="" method="post" class="ajax">
+            <input type="text" name="nome" id="" placeholder="Nome...">
+            <div></div>
+            <input type="email" name="email" id="" placeholder="Email...">
+            <div></div>
+            <input type="tel" name="telefone" id="" placeholder="Telefone.">
+            <div></div>
+            <textarea name="mensagem" id="" cols="30" rows="10" placeholder="Sua mensagem..."></textarea>
+            <div></div>
+            <input type="hidden" name="form" value="contact">
+            <input type="submit" name="contactSend" value="Enviar">
+        </form>
+    </div>
+</div>
+
+<style>
+    div.contatoContainer form input[type=submit]{
+        background-color: #00C59E;
+        color: white;
+        border-radius: 10px;
+        text-transform: uppercase;
+        font-size: 1em;
+        font-weight: bold;
+    }
+    div.contatoContainer form input{
+        display: inline-block;
+        width: 80vw;
+        max-width: 500px;
+        padding: 10px 10px;
+    }
+    div.contatoContainer form textarea{
+        width: 80vw;
+        max-width: 500px;
+        resize: vertical;
+        padding: 10px 10px;
+    }
+    div.contatoContainer {
+        text-align: center;
+        margin-top: 20px;
+    }
+    div.contatoContainer form > div {
+        margin: 10px 0;
+    }
+</style>
