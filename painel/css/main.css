@@ -1,0 +1,369 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(225, 225, 225, 1);
+    display: flex;
+    /* overflow: hidden; */
+    overflow-x: hidden;
+}
+/* .center{
+    max-width: 1280px;
+    padding: 0 2%;
+    margin:0 auto;
+} */
+.w33{width:33.3%; padding: 0 2%;}
+.w50{width: 50%; padding: 0 2%;}
+.clear{clear: both;}
+/* .f-left{float:left;}
+.f-right{float:right;} */
+.center{
+    max-width: 1280px;
+    padding: 0 2%;
+    margin:0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+}
+/* .f-left{float:none;} */
+.f-right{
+    /* float:none; */
+    justify-content: flex-end;
+    display: flex;
+}
+
+/* Estilização do site */
+
+.red-box {
+    text-align: center;
+    color: white;
+    background: #F75353;
+    font-size: 1em;
+    width: 100%;
+    padding: 0.5em 2%;
+}
+
+aside.menu  {
+    background-color: #263238;
+    /* width: 30%; */
+    /* height: 100%; */
+    overflow-y: auto;
+    padding: 2%;
+    flex: 1 1 10%;
+    color: white;
+}
+aside.menu  div.avatar{
+    border-radius: 50%;
+    border: 1px solid #004d40;
+    width: 4em;
+    height: 4em;
+    background-size: cover;
+    background-position: center;
+}
+aside.menu  header {
+    padding-bottom: 20px;
+    border-bottom: 2px solid black;
+}
+aside.menu  div.avatar i {
+    margin: auto;
+    font-size: 2em;
+}
+aside.menu   p {
+    text-align: center;
+}
+aside.menu  nav {}
+aside.menu  nav h3 {
+    background-color: #37474f;
+    padding-left: 16px;
+}
+aside.menu  nav a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    border-bottom: 1px solid #37474f;
+    padding: 8px 0;
+}
+
+
+main.dash {
+    flex: 5 0 10%;
+    overflow-x: hidden;
+}
+main.dash header {
+    background: #455a64;
+    /* padding: 10px; */
+    color: white;
+}
+main.dash header .menu-btn{
+    cursor: pointer;
+    padding: 10px;
+}
+main.dash header a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+}
+main.dash section {
+    margin: 10px 10px;
+    background-color: rgb(200, 200, 200);
+    padding: 16px;
+}
+main.dash section h2 {
+    width: 100%;
+    padding: 0 2%;
+}
+main.dash section#views > div {
+    background: white;
+    padding: 10px;
+    margin: 3px;
+    flex-grow: 1;
+    /* asdf */
+}
+
+section table tr td {
+    padding: 0 5px;
+    border-top: 1px solid black;
+}
+
+
+aside.menu  nav li { 
+    display: inline-block; 
+    text-transform: uppercase; 
+    font-size: 15px;
+}
+aside.menu nav a {
+    position: relative;
+
+}
+aside.menu nav a::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: top left;
+    transition: transform 1s ease;
+}
+/* https://tobiasahlin.com/blog/css-trick-animating-link-underlines/ */
+aside.menu nav a:hover::before {
+   transform: scaleX(1);
+}
+aside.menu nav {
+    margin-top: 6px;
+}
+section.userEdit form{
+    display: grid;
+    display: inline-grid;
+}
+
+aside.menu nav div.menu-btn{ display:none;}
+@media screen and (max-width: 768px){   
+    .w50{width: 100%;}  
+    .w33{width: 100%;}  
+    aside.menu nav li a {
+        padding: 0 10px;
+    }
+    aside.menu  nav ul {   display: block;}
+}
+@media screen and (max-width: 500px) {
+    /* aside.menu nav div.menu-btn{ display:block;} */
+    aside.menu  {   display: none; flex-grow: 10;}
+    /* nav.mobile {    display: block;}
+    nav.mobile ul { display: none;} */
+    aside.menu nav .menu-btn{
+        font-size: 1.5em;
+        color: white;
+        cursor: pointer;
+        padding-right: 0.5em;
+    }
+    aside.menu nav ul{
+        top:50px; left: 0;
+        z-index: 3;
+        position: absolute;
+        /* display: block; */
+        text-align: center;
+        width: 100%;
+        list-style: none;
+    }
+    aside.menu nav li{
+        font-size: 16px;
+        background-color: white;
+        border-bottom: 1px solid #ccc;
+        font-weight: 300;
+        display: block;
+    }
+    aside.menu nav li a{
+        color: #444;
+        text-decoration: none;
+        display:block;
+        padding: 1em 0 !important;
+    }
+    aside.menu nav li a::before {
+    background-color: #000;
+    }
+}
+
+.f-column{
+    flex-direction: column;
+}
+.d-flex{
+    display:flex;
+}
+
+    /* REALY NOT PRACTICAL TO CLASS EVERY INDIVIDUAL DIV INSIDE THE FORM WITH D-FLEX! */
+section form div.d-flex{
+    display: flex;
+    margin: 10px;
+}
+section form div.d-flex label {
+    margin: 10px;
+}
+section form div.d-flex.file {
+    flex-grow: 1;
+    /* margin: 10px; */
+    border: 1px solid black;
+    padding: 10px;
+}
+section form div.d-flex input {
+    flex-grow: 100;
+    padding-left: 10px;
+}
+section form div.d-flex textarea {
+    flex-grow: 100;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+section form div.d-flex input[type=submit]{
+    border: none;
+    box-shadow: 1px 1px 1px;
+    background-color: darkgray;
+    cursor: pointer;
+    height: 2em;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 500px){
+    section form div.d-flex{
+        flex-direction: column;
+    }
+    section form div.d-flex label{
+        margin-bottom: 2px;
+    }
+    section form div.d-flex textarea {
+        margin-top: 0;
+    }
+    section form div.d-flex input {
+        height: 2.5em;
+    }
+}
+
+
+div.all-flex-table{
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+div.all-flex-table > div {
+    display:flex;
+    width: 100%;
+    border-bottom: 1px solid black;
+
+}
+div.all-flex-table > div > * {
+    flex-grow: 2;
+    flex-basis: 10%;
+
+}
+@media screen and (max-width: 500px){
+    div.all-flex-table > div > * {
+        word-break: break-all;
+    }
+    section#panelUsers div.all-flex-table > div  ,
+    section#viewMetrics div.all-flex-table > div  {
+        flex-direction: row;
+    }
+    div.all-flex-table > div  {
+        flex-direction: column;
+    }
+    div.all-flex-table > div > div.mob-btn > * {
+        padding: 10px;
+    }
+    div.all-flex-table >  div.pagination > *{
+        padding: 10px;
+    }
+    div.all-flex-table >  div.pagination {
+        flex-direction: row;
+    }
+    textarea{
+        height: 200px;
+    }
+}
+.min-flex{
+    flex: 0.5 0 0 !important;
+}
+
+.box-alert.ok { background-color: lightgreen;}
+.box-alert.error { background-color: pink;}
+
+div.all-flex-table > div.pagination > * {
+    flex-grow: 0;
+    flex-basis: 5%;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px 10px;
+}
+div.all-flex-table > div.pagination {
+    justify-content: center;
+}
+div.all-flex-table > div > div.f-space{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+div.listSlide img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+a.edit-btn {
+    text-decoration: none;
+    border: 1px solid black;
+    color: white;
+    background: orange;
+    display: inline-flex;
+    align-items: center;
+    margin: auto;
+}
+
+a.delete-btn {
+    text-decoration: none;
+    border: 1px solid black;
+    color: white;
+    background: lightcoral;
+    display: inline-flex;
+    align-items: center;
+    margin: auto;
+}
+a.btn {
+    text-decoration: none;
+    border: 1px solid black;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    margin: auto;
+}
+a.btn.green{
+    background: lightgreen;
+}
