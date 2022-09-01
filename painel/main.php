@@ -96,7 +96,7 @@ if (isset($_GET['logout'])) {
                 ['permission' => '2', 'type' => 'title', 'content' => 'Configuração Geral'],
                 ['permission' => '0', 'type' => 'link', 'link' => '?url=userEdit', 'content' => 'Editar Usuario'],
 
-                ['permission' => '2', 'type' => 'title', 'content' => 'Isaac - Eventos '],
+                ['permission' => '2', 'type' => 'title', 'content' => 'Eventos '],
                 ['permission' => '2', 'type' => 'link', 'link' => '', 'content' => 'Plataforma de eventos'],
                 ['permission' => '2', 'type' => 'link', 'link' => '', 'content' => 'Assinaturas mensal'],
                 ['permission' => '2', 'type' => 'link', 'link' => '', 'content' => 'Add/edit events'],
@@ -226,12 +226,14 @@ if (isset($_GET['logout'])) {
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script src="../js/dashboardMain.js"></script>
 
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
+    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
+    <script src="https://cdn.tiny.cloud/1/<?php echo TINYMCE_API_KEY ?>/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- <script src="../js/tinymce_6.1.2-8.js"></script> -->
+    <!-- <script src="../js/tinymce/tinymce.min.js"></script> -->
 
     <script>
         tinymce.init({
-            selector: 'textarea',
+            selector: 'textarea.tinymce',
             plugin: 'image'
         });
     </script>
