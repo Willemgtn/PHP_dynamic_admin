@@ -4,7 +4,7 @@ UsersMod::verifyPermission(2);
 $pageTable = 'tb_site.home';
 function pageUrl($next = null)
 {
-    $baseUrl = './?url=editSlide';
+    $baseUrl = './editHomePage';
     return $next ? $baseUrl . $next : $baseUrl;
 }
 

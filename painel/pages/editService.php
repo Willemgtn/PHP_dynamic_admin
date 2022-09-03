@@ -2,7 +2,7 @@
 $pageTable = 'tb_site.service';
 function pageUrl($next = null)
 {
-    $baseUrl = './?url=editService';
+    $baseUrl = './editService';
     return $next ? $baseUrl . $next : $baseUrl;
 }
 ?>
@@ -74,7 +74,7 @@ function pageUrl($next = null)
     <h3>
         <i class="fa-solid fa-address-card"></i>
         Registered Services
-        <a style="float: right;" class="btn green" href="<?php echo pageUrl('&add'); ?>"><i class="fa-solid fa-plus"></i>Add New </a>
+        <a style="float: right;" class="btn green" href="<?php echo pageUrl('?add'); ?>"><i class="fa-solid fa-plus"></i>Add New </a>
     </h3>
     <div class="header all-flex-table">
         <div>
@@ -93,12 +93,12 @@ function pageUrl($next = null)
 
                 <p><?php echo $value['service'] ?></p>
                 <div class="min-flex f-space mob-btn">
-                    <a class="edit-btn" href="<?php echo pageUrl('&edit=' . $value['id']) ?>"><i class="fa-solid fa-pencil"></i>Edit</a>
-                    <a class="delete-btn" actionBtn="delete" href="<?php echo pageUrl('&delete=' . $value['id']) ?>"><i class="fa-solid fa-xmark"></i>Delete</a>
+                    <a class="edit-btn" href="<?php echo pageUrl('?edit=' . $value['id']) ?>"><i class="fa-solid fa-pencil"></i>Edit</a>
+                    <a class="delete-btn" actionBtn="delete" href="<?php echo pageUrl('?delete=' . $value['id']) ?>"><i class="fa-solid fa-xmark"></i>Delete</a>
                 </div>
                 <div class="min-flex f-space  mob-btn">
-                    <a href="<?php echo pageUrl('&order=down&id=' . $value['id']) ?>"><i class="fa-solid fa-angle-down"></i></a>
-                    <a href="<?php echo pageUrl('&order=up&id=' . $value['id']) ?>"><i class="fa-solid fa-angle-up"></i></a>
+                    <a href="<?php echo pageUrl('?order=down&id=' . $value['id']) ?>"><i class="fa-solid fa-angle-down"></i></a>
+                    <a href="<?php echo pageUrl('?order=up&id=' . $value['id']) ?>"><i class="fa-solid fa-angle-up"></i></a>
                 </div>
 
             </div>
@@ -112,10 +112,10 @@ function pageUrl($next = null)
             for ($i = 1; $i <= $totalPaginas + 1; $i++) {
                 if ($i == $curPage) {
             ?>
-                    <a class="active" href="<?php echo pageUrl('&pages=' . $i) ?> ">
+                    <a class="active" href="<?php echo pageUrl('?pages=' . $i) ?> ">
                         <?php echo $i ?></a>
                 <?php } else { ?>
-                    <a href="<?php echo pageUrl('&pages=' . $i) ?> ">
+                    <a href="<?php echo pageUrl('?pages=' . $i) ?> ">
                         <?php echo $i ?></a>
             <?php }
             }
@@ -152,7 +152,7 @@ if (isset($_GET['edit'])) {
             <i class="fa-solid fa-pencil"></i>
             Edit Testimony
         </h2>
-        <form action=<?php echo pageUrl('&edit=' . $value['id']) ?>" method="post" enctype="multipart/form-data">
+        <form action=<?php echo pageUrl('?edit=' . $value['id']) ?>" method="post" enctype="multipart/form-data">
 
 
             <div class="d-flex">

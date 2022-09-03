@@ -3,7 +3,7 @@ UsersMod::verifyPermission(2);
 $pageTable = 'tb_admin.users';
 function pageUrl($next = null)
 {
-    $baseUrl = './?url=editUsers';
+    $baseUrl = './editUsers';
     return $next ? $baseUrl . $next : $baseUrl;
 }
 ?>
@@ -94,7 +94,7 @@ function pageUrl($next = null)
     <h2>
         <i class="fa-solid fa-users"></i>
         Panel Users
-        <a style="float: right;" class="btn green" href="<?php echo pageUrl('&add'); ?>"><i class="fa-solid fa-plus"></i>Add New </a>
+        <a style="float: right;" class="btn green" href="<?php echo pageUrl('?add'); ?>"><i class="fa-solid fa-plus"></i>Add New </a>
 
     </h2>
 
@@ -116,8 +116,8 @@ function pageUrl($next = null)
                 <p><?php echo $value['user'] ?></p>
                 <p><?php echo UsersMod::nameRole($value['role']) ?></p>
                 <div class="min-flex f-space mob-btn">
-                    <a class="edit-btn" href="<?php echo pageUrl('&edit=' . $value['id']) ?>"><i class="fa-solid fa-pencil"></i>Edit</a>
-                    <a class="delete-btn" actionBtn="delete" href="<?php echo pageUrl('&delete=' . $value['id']) ?>"><i class="fa-solid fa-xmark"></i>Delete</a>
+                    <a class="edit-btn" href="<?php echo pageUrl('?edit=' . $value['id']) ?>"><i class="fa-solid fa-pencil"></i>Edit</a>
+                    <a class="delete-btn" actionBtn="delete" href="<?php echo pageUrl('?delete=' . $value['id']) ?>"><i class="fa-solid fa-xmark"></i>Delete</a>
                 </div>
             </div>
         <?php

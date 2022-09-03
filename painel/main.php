@@ -73,10 +73,10 @@ if (isset($_GET['logout'])) {
             <?php
             $navItems = (array(
                 ['permission' => '1', 'type' => 'title', 'content' => 'Edit Page'],
-                ['permission' => '2', 'type' => 'link', 'link' => '?url=editHomePage', 'content' => 'Edit Home Page'],
-                ['permission' => '1', 'type' => 'link', 'link' => '?url=editSlide', 'content' => 'Edit Slides'],
-                ['permission' => '1', 'type' => 'link', 'link' => '?url=editDepo', 'content' => 'Edit Depoimentos'],
-                ['permission' => '1', 'type' => 'link', 'link' => '?url=editService', 'content' => 'Edit Serviços'],
+                ['permission' => '2', 'type' => 'link', 'link' => './editHomePage', 'content' => 'Edit Home Page'],
+                ['permission' => '1', 'type' => 'link', 'link' => './editSlide', 'content' => 'Edit Slides'],
+                ['permission' => '1', 'type' => 'link', 'link' => './editDepo', 'content' => 'Edit Depoimentos'],
+                ['permission' => '1', 'type' => 'link', 'link' => './editService', 'content' => 'Edit Serviços'],
 
 
                 // ['permission' => '1', 'type' => 'title', 'content' => 'Cadastro'],
@@ -90,11 +90,11 @@ if (isset($_GET['logout'])) {
                 // ['permission' => '0', 'type' => 'link', 'link' => '?url=listSlide', 'content' => 'Listar Slides'],
 
                 ['permission' => '1', 'type' => 'title', 'content' => 'Administração do painel'],
-                ['permission' => '2', 'type' => 'link', 'link' => '?url=editUsers', 'content' => 'Editar Usuarios'],
+                ['permission' => '2', 'type' => 'link', 'link' => './editUsers', 'content' => 'Editar Usuarios'],
                 // ['permission' => '1', 'type' => 'link', 'link' => '?url=userAdd', 'content' => 'Adicionar Usuario'],
 
                 ['permission' => '2', 'type' => 'title', 'content' => 'Configuração Geral'],
-                ['permission' => '0', 'type' => 'link', 'link' => '?url=userEdit', 'content' => 'Editar Usuario'],
+                ['permission' => '0', 'type' => 'link', 'link' => './userEdit', 'content' => 'Editar Usuario'],
 
                 ['permission' => '2', 'type' => 'title', 'content' => 'Eventos '],
                 ['permission' => '2', 'type' => 'link', 'link' => '', 'content' => 'Plataforma de eventos'],
@@ -192,10 +192,9 @@ if (isset($_GET['logout'])) {
 
 
         <?php
-
         if (isset($_GET["url"])) {
             if (!ctype_alpha($_GET['url'])) {
-                die('Alpha only; Incidend will be reported!');
+                die('Alpha only; Incidend will be reported!!');
             }
             if (file_exists("./pages/" . $_GET["url"] . ".html")) {
                 include("./pages/" . $_GET["url"] . ".html");
@@ -234,7 +233,10 @@ if (isset($_GET['logout'])) {
     <script>
         tinymce.init({
             selector: 'textarea.tinymce',
-            plugin: 'image'
+            plugin: 'image link insertdatetime code',
+            toolbar: 'image link insertdatetime code',
+            link_default_target: '_blank',
+            insertdatetime_dateformat: '%d-%m-%Y'
         });
     </script>
 </body>
