@@ -1,0 +1,46 @@
+    /* REALY NOT PRACTICAL TO CLASS EVERY INDIVIDUAL DIV INSIDE THE FORM WITH D-FLEX! */
+    section form div.d-flex{
+        display: flex;
+        margin: 10px;
+    }
+    section form div.d-flex label {
+        margin: 10px;
+    }
+    section form div.d-flex.file {
+        flex-grow: 1;
+        /* margin: 10px; */
+        border: 1px solid black;
+        padding: 10px;
+    }
+    section form div.d-flex input {
+        flex-grow: 100;
+        padding-left: 10px;
+    }
+    section form div.d-flex textarea {
+        flex-grow: 100;
+        padding-left: 10px;
+        margin-top: 10px;
+    }
+    section form div.d-flex input[type=submit]{
+        border: none;
+        box-shadow: 1px 1px 1px;
+        background-color: darkgray;
+        cursor: pointer;
+        height: 2em;
+        margin-top: 10px;
+    }
+    
+    @media screen and (max-width: 500px){
+        section form div.d-flex{
+            flex-direction: column;
+        }
+        section form div.d-flex label{
+            margin-bottom: 2px;
+        }
+        section form div.d-flex textarea {
+            margin-top: 0;
+        }
+        section form div.d-flex input {
+            height: 2.5em;
+        }
+    }

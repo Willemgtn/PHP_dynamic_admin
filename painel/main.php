@@ -1,14 +1,7 @@
 <?php
-// include('../config.php');
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
 if (isset($_GET['logout'])) {
     Painel::logout();
 }
-
-
 ?>
 
 
@@ -22,6 +15,7 @@ if (isset($_GET['logout'])) {
     <title>Painel de controle</title>
     <link rel="stylesheet" href="../fontawesome/css/all.css">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/newform.css">
     <style>
         @media screen and (max-width: 500px) {
             aside.menu {
@@ -41,15 +35,7 @@ if (isset($_GET['logout'])) {
 </head>
 
 <body>
-    <?php
-    // $_SESSION['avatar'] = '../img/default_profile.webp';
-    // $_SESSION['avatar'] = null;
-    // unset($_SESSION['avatar']);
-    ?>
-
-
     <!-- <div class="red-box"><i class="fa-solid fa-circle-exclamation"> </i> User or password mismatched</div> -->
-    <!-- logged in -->
     <aside class="menu f-left">
         <header class="center">
             <div class="avatar center" <?php if ($_SESSION['avatar'] != null) {
@@ -79,8 +65,8 @@ if (isset($_GET['logout'])) {
                 ['permission' => '1', 'type' => 'link', 'link' => './editService', 'content' => 'Edit Serviços'],
 
 
-                // ['permission' => '1', 'type' => 'title', 'content' => 'Cadastro'],
-                // ['permission' => '1', 'type' => 'link', 'link' => '?url=addDepo', 'content' => 'Cadastro Depoimento'],
+                ['permission' => '1', 'type' => 'title', 'content' => 'Internal'],
+                ['permission' => '1', 'type' => 'link', 'link' => './addClient', 'content' => 'Cadastro Cliente'],
                 // ['permission' => '1', 'type' => 'link', 'link' => '?url=addService', 'content' => 'Cadastro Serviços'],
                 // ['permission' => '1', 'type' => 'link', 'link' => '?url=addSlide', 'content' => 'Cadastro Slides'],
 
@@ -208,14 +194,6 @@ if (isset($_GET['logout'])) {
             include('./pages/section-users.php');
         }
 
-        // echo "<hr>";
-        // print_r($_SESSION);
-        // // print_r($_SESSION['avatar']);
-        // echo "<hr>";
-
-        // for($i=0; $i<100; $i++){
-        //     echo"<h2> testando</h2>";
-        // }
         ?>
 
 
@@ -229,10 +207,15 @@ if (isset($_GET['logout'])) {
     <script src="https://cdn.tiny.cloud/1/<?php echo TINYMCE_API_KEY ?>/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <!-- <script src="../js/tinymce_6.1.2-8.js"></script> -->
     <!-- <script src="../js/tinymce/tinymce.min.js"></script> -->
+    <script src="https://malsup.github.io/jquery.form.js"></script>
+    <script src="../js/jquery.mask.js"></script>
+    <script src="./js/helperMask.js"></script>
+    <script src="./js/ajax.js"></script>
+
 
     <script>
         tinymce.init({
-            selector: 'textarea.tinymce',
+            selector: 'textarea.tiny',
             plugin: 'image link insertdatetime code',
             toolbar: 'image link insertdatetime code',
             link_default_target: '_blank',

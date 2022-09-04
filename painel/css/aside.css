@@ -1,0 +1,123 @@
+
+aside.menu  {
+    background-color: #263238;
+    /* width: 30%; */
+    /* height: 100%; */
+    overflow-y: auto;
+    padding: 2%;
+    flex: 1 1 10%;
+    color: white;
+}
+aside.menu  div.avatar{
+    border-radius: 50%;
+    border: 1px solid #004d40;
+    width: 4em;
+    height: 4em;
+    background-size: cover;
+    background-position: center;
+}
+aside.menu  header {
+    padding-bottom: 20px;
+    border-bottom: 2px solid black;
+}
+aside.menu  div.avatar i {
+    margin: auto;
+    font-size: 2em;
+}
+aside.menu   p {
+    text-align: center;
+}
+aside.menu  nav {}
+aside.menu  nav h3 {
+    background-color: #37474f;
+    padding-left: 16px;
+}
+aside.menu  nav a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    border-bottom: 1px solid #37474f;
+    padding: 8px 0;
+}
+
+
+aside.menu  nav li { 
+    display: inline-block; 
+    text-transform: uppercase; 
+    font-size: 15px;
+}
+aside.menu nav a {
+    position: relative;
+
+}
+aside.menu nav a::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: top left;
+    transition: transform 1s ease;
+}
+/* https://tobiasahlin.com/blog/css-trick-animating-link-underlines/ */
+aside.menu nav a:hover::before {
+   transform: scaleX(1);
+}
+aside.menu nav {
+    margin-top: 6px;
+}
+section.userEdit form{
+    display: grid;
+    display: inline-grid;
+}
+
+aside.menu nav div.menu-btn{ display:none;}
+@media screen and (max-width: 768px){   
+    .w50{width: 100%;}  
+    .w33{width: 100%;}  
+    aside.menu nav li a {
+        padding: 0 10px;
+    }
+    aside.menu  nav ul {   display: block;}
+}
+@media screen and (max-width: 500px) {
+    /* aside.menu nav div.menu-btn{ display:block;} */
+    aside.menu  {   display: none; flex-grow: 10;}
+    /* nav.mobile {    display: block;}
+    nav.mobile ul { display: none;} */
+    aside.menu nav .menu-btn{
+        font-size: 1.5em;
+        color: white;
+        cursor: pointer;
+        padding-right: 0.5em;
+    }
+    aside.menu nav ul{
+        top:50px; left: 0;
+        z-index: 3;
+        position: absolute;
+        /* display: block; */
+        text-align: center;
+        width: 100%;
+        list-style: none;
+    }
+    aside.menu nav li{
+        font-size: 16px;
+        background-color: white;
+        border-bottom: 1px solid #ccc;
+        font-weight: 300;
+        display: block;
+    }
+    aside.menu nav li a{
+        color: #444;
+        text-decoration: none;
+        display:block;
+        padding: 1em 0 !important;
+    }
+    aside.menu nav li a::before {
+    background-color: #000;
+    }
+}
