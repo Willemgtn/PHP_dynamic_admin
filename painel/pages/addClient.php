@@ -6,9 +6,9 @@
 
     <form class="ajax" action="./api/addcliente.php" method="post" enctype="multipart/form-data">
         <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="" placeholder="Nome do Cliente/Empresa" required>
+        <input type="text" name="nome" id="" placeholder="Nome do Cliente/Empresa">
         <label for="email">E-mail</label>
-        <input type="email" name="email" id="" placeholder="E-mail do Cliente/Empresa" required>
+        <input type="email" name="email" id="" placeholder="E-mail do Cliente/Empresa">
         <label for="tipo_cliente">Tipo:</label>
         <select name="tipo_cliente" id="">
             <option value="fisico">Fisico</option>
@@ -18,7 +18,7 @@
         <input type="text" name="cpf" id="inscricao">
         <label for="img">Imagem</label>
         <input type="file" name="img" id="">
-        <input type="submit" value="Cadastrar">
+        <input type="submit" value="Cadastrar" disabled>
 
     </form>
 </section>

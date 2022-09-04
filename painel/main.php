@@ -16,6 +16,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="../fontawesome/css/all.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/newform.css">
+    <link rel="stylesheet" href="./css/aside.css">
     <style>
         @media screen and (max-width: 500px) {
             aside.menu {
