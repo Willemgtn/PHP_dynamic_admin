@@ -1,3 +1,18 @@
+<?php
+$pageTable = 'tb_admin.clientes';
+function pageUrl($next = null)
+{
+    $baseUrl = './clientes';
+    // echo $baseUrl . $next;
+    // return $baseUrl . $next;
+    return $next ? $baseUrl . $next : $baseUrl;
+}
+$maxItemsPerPage = 6;
+
+?>
+
+<?php //if (isset($_GET['add'])) { 
+?>
 <section id="" class="new-form">
     <h2>
         <i class="fa-solid fa-plus"></i>
@@ -22,45 +37,51 @@
 
     </form>
 </section>
+<?php //} 
+?>
 <!-- <script type="text/javascript" src="./js/helperMask.js"></script> -->
 
+<section id="" class="">
+    <h3>
+        <i class="fa-solid fa-address-card"></i>
+        Clientes
+        <a style="float: right;" class="btn green" href="<?php echo pageUrl('?add'); ?>"><i class="fa-solid fa-plus"></i>Add New </a>
+    </h3>
+    <br>
 
-<!-- <style>
-    section.new-form form label,
-    section.new-form form input,
-    section.new-form form textarea {
-        display: block;
-        width: 100%;
-    }
+    <!-- SQL fetchAll foreach template -->
 
-    section.new-form form label {
-        margin-top: 16px;
-    }
 
-    section.new-form form input {
-        height: 2em;
-        padding-left: 1em;
-    }
 
-    section.new-form form textarea {
-        padding-left: 1em;
-        resize: vertical;
-    }
+    <!-- custom -->
+    <div class="cardsWrapper">
+        <!-- template -->
+        <div class="roundedBorders">
+            <img src="./uploads/default_profile.png" alt="">
+            <hr>
+            <ul>
+                <li><i class="fa-solid fa-pencil"></i>
+                    <strong>Nome:</strong>
+                    <!-- PHP -->
+                </li>
+                <li><i class="fa-solid fa-pencil"></i>
+                    <strong>E-mail:</strong>
+                    <!-- PHP -->
+                </li>
+                <li><i class="fa-solid fa-pencil"></i>
+                    <strong>Tipo:</strong>
+                    <!-- PHP -->
+                </li>
+                <li><i class="fa-solid fa-pencil"></i>
+                    <strong>Cpf:</strong>
+                    <!-- PHP -->
+                </li>
+            </ul>
+            <div class="d-flex" style="margin-bottom: 10px;">
+                <a class="btn edit" href="./?edit">edit</a>
+                <a class="btn red" href="./?delete">delete</a>
+            </div>
+        </div>
+    </div>
 
-    section.new-form form select {
-        width: 100px;
-        margin-top: 0.5em;
-    }
-
-    section.new-form form input[type=file] {
-        padding: 1em;
-        border: 1px solid black;
-        height: unset;
-        margin-top: 0.2em;
-        border-radius: 0.8em;
-    }
-
-    section.new-form form input[type=submit] {
-        margin-top: 16px;
-    }
-</style> -->
+</section>

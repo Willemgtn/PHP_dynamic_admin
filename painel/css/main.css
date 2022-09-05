@@ -219,3 +219,17 @@ a.btn.edit {
   background: orange;
 }
 /* Anchors / LINKS / BUTTONS DECORATION */
+
+.cardsWrapper > div {
+  border-radius: 10px;
+  border: 1px solid black;
+  display: inline-block;
+  max-width: 300px;
+  position: relative;
+}
+.cardsWrapper > div > img {
+  width: 100%;
+}
+.cardsWrapper > div > ul {
+  list-style: none;
+}
