@@ -52,36 +52,39 @@ $maxItemsPerPage = 6;
     <!-- SQL fetchAll foreach template -->
 
 
-
     <!-- custom -->
     <div class="cardsWrapper">
         <!-- template -->
-        <div class="roundedBorders">
-            <img src="./uploads/default_profile.png" alt="">
-            <hr>
-            <ul>
-                <li><i class="fa-solid fa-pencil"></i>
-                    <strong>Nome:</strong>
-                    <!-- PHP -->
-                </li>
-                <li><i class="fa-solid fa-pencil"></i>
-                    <strong>E-mail:</strong>
-                    <!-- PHP -->
-                </li>
-                <li><i class="fa-solid fa-pencil"></i>
-                    <strong>Tipo:</strong>
-                    <!-- PHP -->
-                </li>
-                <li><i class="fa-solid fa-pencil"></i>
-                    <strong>Cpf:</strong>
-                    <!-- PHP -->
-                </li>
-            </ul>
-            <div class="d-flex" style="margin-bottom: 10px;">
-                <a class="btn edit" href="./?edit">edit</a>
-                <a class="btn red" href="./?delete">delete</a>
-            </div>
-        </div>
-    </div>
+        <?php for ($i = 0; $i < 6; $i++) { ?>
 
+            <div class="roundedBorders">
+                <img src="./uploads/default_profile.png" alt="">
+                <hr>
+                <ul>
+                    <li><i class="fa-solid fa-pencil"></i>
+                        <strong>Nome:</strong>
+                        <!-- PHP -->
+                    </li>
+                    <li><i class="fa-solid fa-pencil"></i>
+                        <strong>E-mail:</strong>
+                        <!-- PHP -->
+                    </li>
+                    <li><i class="fa-solid fa-pencil"></i>
+                        <strong>Tipo:</strong>
+                        <!-- PHP -->
+                    </li>
+                    <li><i class="fa-solid fa-pencil"></i>
+                        <strong>Cpf:</strong>
+                        <!-- PHP -->
+                    </li>
+                </ul>
+                <hr>
+                <div class="d-flex" style="margin:10px 0;">
+                    <a class="btn edit" href="./?edit">edit</a>
+                    <a class="btn red" href="./?delete">delete</a>
+                </div>
+            </div>
+        <?php } ?>
+
+    </div>
 </section>

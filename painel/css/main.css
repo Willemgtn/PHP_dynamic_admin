@@ -204,10 +204,12 @@ a.delete-btn {
 a.btn {
   text-decoration: none;
   border: 1px solid black;
+  border-radius: 8px;
   color: white;
   display: inline-flex;
   align-items: center;
   margin: auto;
+  padding: 6px 12px;
 }
 a.btn.green {
   background: lightgreen;
@@ -219,17 +221,23 @@ a.btn.edit {
   background: orange;
 }
 /* Anchors / LINKS / BUTTONS DECORATION */
-
+.cardsWrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 .cardsWrapper > div {
   border-radius: 10px;
   border: 1px solid black;
   display: inline-block;
   max-width: 300px;
   position: relative;
+  margin-bottom: 10px;
 }
 .cardsWrapper > div > img {
   width: 100%;
 }
 .cardsWrapper > div > ul {
   list-style: none;
+  margin: 10px;
 }
