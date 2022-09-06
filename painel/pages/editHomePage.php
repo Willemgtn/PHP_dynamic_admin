@@ -30,7 +30,7 @@ $sql = $sql[0];
         </div>
         <div class="d-flex">
             <label for="pagedescription">Page Description:</label>
-            <textarea name="pagedescription" id="" rows="5"><?php echo $sql['pagedescription'] ?></textarea>
+            <textarea class="tiny" name="pagedescription" id="" rows="5"><?php echo $sql['pagedescription'] ?></textarea>
         </div>
         <div class="d-flex">
             <label for="logotitle">Logo's title:</label>
@@ -46,7 +46,7 @@ $sql = $sql[0];
         </div>
         <div class="d-flex">
             <label for="authordescription">Author's Description</label>
-            <textarea name="authordescription" id="" cols="" rows="5"><?php echo $sql['authordescription'] ?></textarea>
+            <textarea class="tiny" name="authordescription" id="" cols="" rows="5"><?php echo $sql['authordescription'] ?></textarea>
         </div>
         <input type="hidden" name="id" value="<?php echo $sql['id'] ?>">
         <div class="d-flex">
@@ -94,7 +94,7 @@ $sql = $sql[0];
 
         <div class="d-flex">
             <label for="description">Description:</label>
-            <textarea name="description" id="" rows="5">
+            <textarea class="tiny" name="description" id="" rows="5">
 
             </textarea>
         </div>

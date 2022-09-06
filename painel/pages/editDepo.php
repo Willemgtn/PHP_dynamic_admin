@@ -35,7 +35,7 @@ $maxItemsPerPage = 6;
 
             <div class="d-flex">
                 <label for="depo">Testimony:</label>
-                <textarea type="text" name="depo" value=""></textarea>
+                <textarea class="tiny" type="text" name="depo" value=""></textarea>
             </div>
 
             <div class="d-flex">

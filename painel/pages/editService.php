@@ -25,7 +25,7 @@ function pageUrl($next = null)
 
             <div class="d-flex">
                 <label for="content">Service Description:</label>
-                <textarea type="text" name="content" value=""></textarea>
+                <textarea class="tiny" type="text" name="content" value=""></textarea>
             </div>
 
 
