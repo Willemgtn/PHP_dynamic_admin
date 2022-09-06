@@ -4,16 +4,16 @@
             <h2 class="title">Depoimentos</h2>
             <?php
             // print_r(DButils::flexSelectAll('tb_site.depoimentos', null, null, 'order_id DESC LIMIT 3'));
-                foreach (DButils::flexSelectAll('tb_site.depoimentos', 'order_id DESC LIMIT 3') as $key => $value) {
-                    # code...
-                    // print_r($key);
-                    // print_r($value);
-                
+            foreach (DButils::flexSelectAll('tb_site.depoimentos', 'order_id DESC LIMIT 3') as $key => $value) {
+                # code...
+                // print_r($key);
+                // print_r($value);
+
             ?>
-            <div class=" depoimentos-single">
-                <p><?php echo $value['conteudo']?></p>
-                <p class="nome-autor"><?php echo $value['autor']?></p>
-            </div>
+                <div class=" depoimentos-single">
+                    <p><?php echo $value['conteudo'] ?></p>
+                    <p class="nome-autor"><?php echo $value['autor'] ?></p>
+                </div>
             <?php     }
             ?>
             <!-- <div class=" depoimentos-single">
@@ -25,21 +25,21 @@
                 <p class="nome-autor">Lorem Ipsum</p>
             </div> -->
         </div>
-        <div class="w50 f-right">
+        <div id="servicos" class="w50 f-right">
             <h2 class="title">Serviços</h2>
             <div class="servicos">
-            <ul>
-            <?php
-            // print_r(DButils::flexSelectAll('tb_site.depoimentos', null, null, 'order_id DESC LIMIT 3'));
-                foreach (DButils::flexSelectAll('tb_site.service', 'order_id DESC LIMIT 3') as $key => $value) {
-                    # code...
-                    // print_r($key);
-                    // print_r($value);
-                
-            ?>
-                
+                <ul>
+                    <?php
+                    // print_r(DButils::flexSelectAll('tb_site.depoimentos', null, null, 'order_id DESC LIMIT 3'));
+                    foreach (DButils::flexSelectAll('tb_site.service', 'order_id DESC LIMIT 3') as $key => $value) {
+                        # code...
+                        // print_r($key);
+                        // print_r($value);
 
-                    <li><?php echo $value['service']; ?></li>
+                    ?>
+
+
+                        <li><?php echo $value['service']; ?></li>
                     <?php } ?>
 
 

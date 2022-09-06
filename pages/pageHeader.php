@@ -7,10 +7,10 @@
             </div>
             <ul>
                 <li><a href="./">Home</a></li>
-                <li><a href="./?url=sobre">Sobre</a></li>
-                <li><a href="">Serviços</a></li>
-                <li><a href="">Sobre</a></li>
-                <li><a href="./?url=contact">Contatos</a></li>
+                <li><a href="./sobre">Sobre</a></li>
+                <li><a href="./#servicos">Serviços</a></li>
+                <li><a href="./#sobre">Sobre</a></li>
+                <li><a href="./contact">Contatos</a></li>
                 <li><a href="./painel/">Admin</a></li>
             </ul>
 

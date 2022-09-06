@@ -13,7 +13,7 @@
 
 </section>
 
-<section class="descricao-autor">
+<section id="sobre" class="descricao-autor">
     <div class="center">
         <div class="w50 f-left">
             <h2><?php echo $sql['authorname'] ?></h2>
