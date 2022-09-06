@@ -36,12 +36,14 @@ class Painel
     }
     static function loadJS(array $files, $page, $painel = false)
     {
-        $includePath = INCLUDE_PATH;
-        $url = explode('/', $_GET['url'])[0];
-        $includePath .= $painel ? 'painel/js' : 'js';
-        if ($page == $url) {
-            foreach ($files as $key => $value) {
-                echo "<script src='$includePath/$value'></script>";
+        if (isset($_GET['url'])) {
+            $includePath = INCLUDE_PATH;
+            $url = explode('/', $_GET['url'])[0];
+            $includePath .= $painel ? 'painel/js' : 'js';
+            if ($page == $url) {
+                foreach ($files as $key => $value) {
+                    echo "<script src='$includePath/$value'></script>";
+                }
             }
         }
     }

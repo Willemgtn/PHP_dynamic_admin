@@ -1,13 +1,15 @@
 <?php
 
 include("../../config.php");
-
+$pageTable = "tb_admin.clientes";
 
 if (!Painel::logado()) {
     $data = ['success' => false, 'error' => 'You must be logged in'];
     die(json_encode($data));
 }
-// Add role permissions here 
+// echo "<hr><pre><p>Post:</p>";
+// print_r($_POST);
+// echo "</pre><hr>";
 
 if (isset($_GET['add'])) {
     if (isset($_POST)) {
@@ -37,15 +39,20 @@ if (isset($_GET['add'])) {
             $data['msg'] = 'imagem invalida';
             die(json_encode($data));
         }
-        // $sql = Sql::connect()->prepare("INSERT INTO $pageTable VALUES (null,?,?,?,?,?)");
-        // if ($sql->execute($data)) {
-        //     $data['success'] = true;
-        //     $data['msg'] = 'Cliente inserido com sucesso';
-        //     die(json_encode($data));
-        // }
+
+        $sql = Sql::connect()->prepare("INSERT INTO `$pageTable` VALUES (null,?,?,?,?,?)");
+        $sqlarray = [$data['nome'], $data['email'], $data['tipo'], $data['inscricao'], $data['imagem']];
+        // $sql->debugDumpParams();
+        // print_r($sqlarray);
+        // echo "<hr>";
+        if ($sql->execute($sqlarray)) {
+            $data['success'] = true;
+            $data['msg'] = 'Cliente inserido com sucesso';
+            die(json_encode($data));
+        }
 
         // IF everything went ok:
-        $data['success'] = true;
+        $data['success'] = 'not true';
         $data['msg'] = 'Cliente inserido com sucesso';
         die(json_encode($data));
     }
@@ -57,6 +64,19 @@ if (isset($_GET['add'])) {
     // Receive the post id of the client to be deleted.
     // Execute corresponding sql statement 
     // return data 
+
+    $id = $_POST['id'];
+    // fetch the img path and delete (unlink) the image of the client
+    $sql = sql::connect()->prepare("SELECT imagem FROM `$pageTable` WHERE id = ?");
+    $sql = $sql->execute([$id]);
+    $imagem = $sql->fetch()['imagem'];
+    @unlink('../uploads/' . $imagem);
+
+    $sql = Sql::connect()->prepare("DELETE FROM `$pageTable` WHERE id= ?");
+    if ($sql->execute([$id])) {
+        $data['success'] = true;
+        $msg['msg'] = "Este cliente foi removido com sucesso.";
+    }
 
     die(json_encode($data));
 } else if (isset($_GET['edit'])) {

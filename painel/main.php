@@ -75,7 +75,7 @@ if (isset($_GET['logout'])) {
 
 
                 ['permission' => '1', 'type' => 'title', 'content' => 'Internal'],
-                ['permission' => '1', 'type' => 'link', 'link' => './addClient', 'content' => 'Cadastro Cliente'],
+                ['permission' => '1', 'type' => 'link', 'link' => './clientes', 'content' => 'Cadastro Cliente'],
                 // ['permission' => '1', 'type' => 'link', 'link' => '?url=addService', 'content' => 'Cadastro Serviços'],
                 // ['permission' => '1', 'type' => 'link', 'link' => '?url=addSlide', 'content' => 'Cadastro Slides'],
 
@@ -202,7 +202,7 @@ if (isset($_GET['logout'])) {
             include('./pages/section-viewMetrics.php');
             include('./pages/section-users.php');
         }
-
+        print_r($_GET)
         ?>
 
 
@@ -223,7 +223,8 @@ if (isset($_GET['logout'])) {
 
     <?php
     // Loading page specific js scripts
-    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js', 'cliente.js'], 'addClient', true);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js', 'cliente.js'], 'clientes', true);
+    // Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js', 'cliente.js'], 'clients/add', true);
 
     ?>
 
