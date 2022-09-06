@@ -223,7 +223,7 @@ if (isset($_GET['logout'])) {
 
     <?php
     // Loading page specific js scripts
-    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js'], 'addClient', true);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js', 'cliente.js'], 'addClient', true);
 
     ?>
 

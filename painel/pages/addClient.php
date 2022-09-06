@@ -19,7 +19,7 @@ $maxItemsPerPage = 6;
         Cadastrar Cliente
     </h2>
 
-    <form class="ajax" action="./api/addcliente.php" method="post" enctype="multipart/form-data">
+    <form class="ajax" action="./api/addcliente" method="post" enctype="multipart/form-data">
         <label for="nome">Nome:</label>
         <input type="text" name="nome" id="" placeholder="Nome do Cliente/Empresa">
         <label for="email">E-mail</label>
@@ -49,13 +49,31 @@ $maxItemsPerPage = 6;
     </h3>
     <br>
 
+    <?php
+    // -----> SQL <-----
+    // $clientes = Sql::connect()->prepare("select * from `$tableName`");
+    // $clientes->execute();
+    // $clientes = $clientes->fetchAll();
+
+    ?>
+
+
     <!-- SQL fetchAll foreach template -->
-
-
-    <!-- custom -->
     <div class="cardsWrapper">
         <!-- template -->
-        <?php for ($i = 0; $i < 6; $i++) { ?>
+        <?php
+        // -----> SQL <-----
+        // $clientes = Sql::connect()->prepare("select * from `$tableName`");
+        // $clientes-> execute();
+        // $clientes = $clientes->fetchAll();
+        // foreach ($client as $value) {
+
+
+        // Fake demo filling
+        $value = ['id' => '0', 'nome' => 'Adriaan', 'email' => 'hotmail.gmail.com', 'tipo' => 'fisico2', 'inscricao' => '000.000.000-00'];
+        for ($i = 0; $i < 6; $i++) {
+
+        ?>
 
             <div class="roundedBorders">
                 <img src="./uploads/default_profile.png" alt="">
@@ -64,27 +82,35 @@ $maxItemsPerPage = 6;
                     <li><i class="fa-solid fa-pencil"></i>
                         <strong>Nome:</strong>
                         <!-- PHP -->
+                        <?php echo $value['nome'] ?>
                     </li>
                     <li><i class="fa-solid fa-pencil"></i>
                         <strong>E-mail:</strong>
                         <!-- PHP -->
+                        <?php echo $value['email'] ?>
                     </li>
                     <li><i class="fa-solid fa-pencil"></i>
                         <strong>Tipo:</strong>
                         <!-- PHP -->
+                        <?php echo ucfirst($value['tipo']) ?>
                     </li>
                     <li><i class="fa-solid fa-pencil"></i>
-                        <strong>Cpf:</strong>
+                        <strong><?php echo $value['tipo'] == 'fisico' ? 'CPF' : 'CNPJ' ?>:</strong>
                         <!-- PHP -->
+                        <?php echo $value['inscricao'] ?>
                     </li>
                 </ul>
                 <hr>
                 <div class="d-flex" style="margin:10px 0;">
-                    <a class="btn edit" href="./?edit">edit</a>
-                    <a class="btn red" href="./?delete">delete</a>
+                    <a class="btn edit" href="<?php echo pageUrl('?edit=') ?>">edit</a>
+                    <a class="btn red delete" href="<?php echo pageUrl('?delete=') ?>" item_id="<?php echo $value['id'] ?>">delete</a>
                 </div>
             </div>
         <?php } ?>
 
     </div>
 </section>
+
+<!-- <script src="../js/jquery.mask.js"></script>
+<script src="./js/helperMask.js"></script>
+<script src="./js/ajax.js"></script> -->
