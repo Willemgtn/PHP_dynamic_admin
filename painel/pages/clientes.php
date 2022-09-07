@@ -30,7 +30,7 @@ $maxItemsPerPage = 6;
                 <option value="juridico">Juridico</option>
             </select>
             <label for="inscricao">CPF: </label>
-            <input type="text" name="cpf" id="inscricao">
+            <input type="text" name="cpf" id="inscricao" placeholder="000.000.000-00">
             <label for="img">Imagem</label>
             <input type="file" name="img" id="">
             <input type="submit" value="Cadastrar" disabled>
@@ -41,9 +41,9 @@ $maxItemsPerPage = 6;
 ?>
 <!-- <script type="text/javascript" src="./js/helperMask.js"></script> -->
 <?php if (isset($_GET['edit'])) {
-    $editClient = Sql::connect()->prepare("SELECT * FROM `$pageTable` WHERE id = ?");
-    $editClient->execute([$_GET['edit']]);
-    $editClient = $editClient->fetch();
+    $cliente = Sql::connect()->prepare("SELECT * FROM `$pageTable` WHERE id = ?");
+    $cliente->execute([$_GET['edit']]);
+    $cliente = $cliente->fetch();
 ?>
     <section id="" class="new-form">
         <h2>
@@ -53,21 +53,21 @@ $maxItemsPerPage = 6;
 
         <form class="ajax" action="./api/clientes.php?edit" method="post" enctype="multipart/form-data">
             <label for="nome">Nome:</label>
-            <input type="text" name="nome" id="" placeholder="Nome do Cliente/Empresa" value="<?php echo $editClient['nome'] ?>">
+            <input type="text" name="nome" id="" placeholder="Nome do Cliente/Empresa" value="<?php echo $cliente['nome'] ?>">
             <label for="email">E-mail</label>
-            <input type="email" name="email" id="" placeholder="E-mail do Cliente/Empresa" value="<?php echo $editClient['email'] ?>">
+            <input type="email" name="email" id="" placeholder="E-mail do Cliente/Empresa" value="<?php echo $cliente['email'] ?>">
             <label for="tipo_cliente">Tipo:</label>
             <select name="tipo_cliente" id="">
-                <option value="fisico">Fisico</option>
-                <option value="juridico">Juridico</option>
+                <option <?php echo $cliente['tipo'] == 'fisico' ? 'selected' : '' ?> value="fisico">Fisico</option>
+                <option <?php echo $cliente['tipo'] == 'juridico' ? 'selected' : '' ?> value="juridico">Juridico</option>
             </select>
             <label for="inscricao">CPF: </label>
-            <input type="text" name="cpf" id="inscricao" value="<?php echo $editClient['inscricao'] ?>">
+            <input type="text" name="cpf" id="inscricao" placeholder="000.000.000-00" value="<?php echo $cliente['inscricao'] ?>">
             <label for="img">Imagem</label>
             <div class=" w100 d-flex" style="align-items: end;">
                 <div class=" cardsWrapper w50">
                     <div style="border: none;">
-                        <img src="./uploads/<?php echo $editClient['imagem'] ?>" alt="Picture">
+                        <img src="./uploads/<?php echo $cliente['imagem'] ?>" alt="Picture">
                     </div>
                 </div>
                 <div class="w50">
@@ -76,6 +76,7 @@ $maxItemsPerPage = 6;
             </div>
             </div>
             <!-- <input type="file" name="img" id=""> -->
+            <input type="hidden" name="imagem_atual" value="<?php echo $cliente['imagem'] ?>">
             <input type="hidden" name="id" value="<?php echo $_GET['edit'] ?>">
             <input type="submit" value="Atualizar" disabled>
 

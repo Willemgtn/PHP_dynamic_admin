@@ -79,42 +79,45 @@ if (isset($_GET['add'])) {
 
     die(json_encode($data));
 } else if (isset($_GET['edit'])) {
+    $data['request'] = $_POST;
+
     $nome = $_POST['nome'];
     $id = $_POST['id'];
     $email = $_POST['email'];
     $tipo = $_POST['tipo_cliente'];
     $inscricao = $tipo == 'fisico' ? $_POST['cpf'] : $_POST['cnpj'];
 
+
     $imagem = $_FILES['img'] ?? null;
     // $_FILES['img'] returns {name, type, tmp_name}
-
     // Here is the place for validation and sanitization of text inputs
     // For the sake of simplicity and flexibility i'm ignoring it and only validating the image format and size.
     $imagem = $imagem ? FileUpload::validadeImage('img') : null;
     $imagem = $imagem ? FileUpload::uploadImage('img', false) : null;
-
-    $sql = Sql::connect()->prepare("SELECT imagem FROM `$pageTable` WHERE id = ?");
-    $sql->execute([$id]);
-    // if image true, delete the old one picture, and use it,
-    // Else use this one
-    $oldImagem = $sql->fetch()['imagem'];
-    if (!$imagem) {
-        $imagem = $oldImagem;
-    } else {
-        @unlink('../uploads/' . $oldImagem);
-    }
-
-
-    $data['request'] = $_POST;
-    $data['imagem'] = $imagem;
-    // $data['img'] = $_FILES['img'] ?? null;
-    // $data['imgvalid'] = $imagem ? true : false;
 
     if ($imagem === false) {
         $data['success'] = false;
         $data['msg'] = 'imagem invalida';
         die(json_encode($data));
     }
+
+    // $sql = Sql::connect()->prepare("SELECT imagem FROM `$pageTable` WHERE id = ?");
+    // $sql->execute([$id]);
+    // if image true, delete the old one picture, and use it,
+    // Else use this one
+    // $oldImagem = $sql->fetch()['imagem'];
+    $oldImagem = $_POST['imagem_atual'];
+    if (!$imagem) {
+        $imagem = $oldImagem;
+    } else {
+        @unlink('../uploads/' . $oldImagem);
+    }
+
+    $data['imagem'] = $imagem;
+    // $data['img'] = $_FILES['img'] ?? null;
+    // $data['imgvalid'] = $imagem ? true : false;
+
+
 
     $sql = Sql::connect()->prepare("UPDATE `$pageTable` SET nome=?, email=?, tipo=?, inscricao=?, imagem=?  WHERE id = ?");
     $sqlarray = [$nome, $email, $tipo, $inscricao, $imagem, $id];
