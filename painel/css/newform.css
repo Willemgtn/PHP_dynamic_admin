@@ -1,38 +1,55 @@
 section.new-form form label,
 section.new-form form input,
 section.new-form form textarea {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 
 section.new-form form label {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 section.new-form form input {
-    height: 2em;
-    padding-left: 1em;
+  height: 2em;
+  padding-left: 1em;
 }
 
 section.new-form form textarea {
-    padding-left: 1em;
-    resize: vertical;
+  padding-left: 1em;
+  resize: vertical;
 }
 
 section.new-form form select {
-    width: 100px;
-    margin-top: 0.5em;
+  width: 100px;
+  margin-top: 0.5em;
 }
 
-section.new-form form input[type=file] {
-    padding: 1em;
-    border: 1px solid black;
-    height: unset;
-    margin-top: 0.2em;
-    border-radius: 0.8em;
+section.new-form form input[type="file"] {
+  padding: 1em;
+  border: 1px solid black;
+  height: unset;
+  margin-top: 0.2em;
+  border-radius: 0.8em;
 }
 
-section.new-form form input[type=submit] {
-    margin-top: 16px;
-    cursor: pointer;
+section.new-form form input[type="submit"] {
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+/* Estilização de formulario de busca  */
+form.search {
+  display: flex;
+  margin: 20px 0;
+}
+form.search input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+}
+form.search input[type="submit"] {
+  padding: 10px;
+}
+div.busca-resultado {
+  margin: 10px 20px;
+  margin-top: -20px;
 }

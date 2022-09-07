@@ -91,12 +91,29 @@ $maxItemsPerPage = 6;
         <a style="float: right;" class="btn green" href="<?php echo pageUrl('?add'); ?>"><i class="fa-solid fa-plus"></i>Add New </a>
     </h3>
     <br>
+    <div class="w100">
+        <form action="" method="post" class="search d-flex" style="margin:20px 0;">
+            <!-- <h4>Realize uma busca</h4> -->
+            <input type="text" name="busca" id="" style="flex-grow:1;" placeholder="Realize uma busca pelo: nome, e-mail, cpf ou cnpj:">
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
 
     <?php
     // -----> SQL <-----
-    // $clientes = Sql::connect()->prepare("select * from `$pageTable`");
-    // $clientes->execute();
-    // $clientes = $clientes->fetchAll();
+    if (isset($_POST['busca'])) {
+        $busca = $_POST['busca'];
+        $searchQuery = "WHERE nome LIKE '%$busca%' OR email LIKE '%$busca%' OR inscricao LIKE '%$busca%'";
+    }
+    $searchQuery = $searchQuery ?? null;
+    // -----> SQL <-----
+    $clientes = Sql::connect()->prepare("SELECT * from `$pageTable`  $searchQuery");
+    $clientes->execute();
+    $clientes = $clientes->fetchAll();
+    // 
+    if (isset($_POST['busca'])) {
+        echo '<div class="busca-resultado"><p>Foram encontrados <b>' . count($clientes) . '</b> resultado(s)</p></div>';
+    }
 
     ?>
 
@@ -105,10 +122,7 @@ $maxItemsPerPage = 6;
     <div class="cardsWrapper">
         <!-- template -->
         <?php
-        // -----> SQL <-----
-        $clientes = Sql::connect()->prepare("SELECT * from `$pageTable`");
-        $clientes->execute();
-        $clientes = $clientes->fetchAll();
+
         foreach ($clientes as $value) {
 
 
