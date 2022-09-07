@@ -76,6 +76,9 @@ if (isset($_GET['add'])) {
     if ($sql->execute([$id])) {
         $data['success'] = true;
         $msg['msg'] = "Este cliente foi removido com sucesso.";
+    } else {
+        $data['success'] = false;
+        $data['msg'] = "Error: Este cliente não existe mais";
     }
 
     die(json_encode($data));

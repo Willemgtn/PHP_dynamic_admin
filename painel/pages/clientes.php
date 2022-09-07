@@ -51,7 +51,7 @@ $maxItemsPerPage = 6;
             Editar/Atualizar Cliente
         </h2>
 
-        <form class="ajax" action="./api/clientes" method="post" enctype="multipart/form-data">
+        <form class="ajax" action="./api/clientes?edit" method="post" enctype="multipart/form-data">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="" placeholder="Nome do Cliente/Empresa" value="<?php echo $editClient['nome'] ?>">
             <label for="email">E-mail</label>
