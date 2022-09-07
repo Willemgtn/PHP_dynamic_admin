@@ -20,7 +20,9 @@ $(function () {
           $("form.ajax").prepend(
             '<div class="box-alert ok ">Sucesss: ' + data.msg + "</div>"
           );
-          $("form.ajax")[0].reset();
+          if ($("form.ajax").attr("resetar")) {
+            $("form.ajax")[0].reset();
+          }
         } else {
           $("form.ajax").prepend(
             '<div class="box-alert error ">Error:: ' + data.msg + "</div>"

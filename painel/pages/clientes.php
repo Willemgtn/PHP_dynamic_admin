@@ -19,7 +19,7 @@ $maxItemsPerPage = 6;
             Cadastrar Cliente
         </h2>
 
-        <form class="ajax" action="./api/clientes.php?add" method="post" enctype="multipart/form-data">
+        <form class="ajax" action="./api/clientes.php?add" method="post" enctype="multipart/form-data" resetar>
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="" placeholder="Nome do Cliente/Empresa">
             <label for="email">E-mail</label>
