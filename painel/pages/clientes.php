@@ -51,7 +51,7 @@ $maxItemsPerPage = 6;
             Editar/Atualizar Cliente
         </h2>
 
-        <form class="ajax" action="./api/clientes?edit" method="post" enctype="multipart/form-data">
+        <form class="ajax" action="./api/clientes.php?edit" method="post" enctype="multipart/form-data">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="" placeholder="Nome do Cliente/Empresa" value="<?php echo $editClient['nome'] ?>">
             <label for="email">E-mail</label>
@@ -64,15 +64,17 @@ $maxItemsPerPage = 6;
             <label for="inscricao">CPF: </label>
             <input type="text" name="cpf" id="inscricao" value="<?php echo $editClient['inscricao'] ?>">
             <label for="img">Imagem</label>
-
-            <div class="cardsWrapper w50">
-                <img src="./uploads/<?php echo $editClient['imagem'] ?>" alt="Picture">
+            <div class=" w100 d-flex" style="align-items: end;">
+                <div class=" cardsWrapper w50">
+                    <div style="border: none;">
+                        <img src="./uploads/<?php echo $editClient['imagem'] ?>" alt="Picture">
+                    </div>
+                </div>
+                <div class="w50">
+                    <input type="file" name="img" id="">
+                </div>
             </div>
-            <div class="w50">
-                <input type="file" name="img" id="" value="6317829207739.jpg">
-
             </div>
-
             <!-- <input type="file" name="img" id=""> -->
             <input type="hidden" name="id" value="<?php echo $_GET['edit'] ?>">
             <input type="submit" value="Atualizar" disabled>
@@ -116,7 +118,7 @@ $maxItemsPerPage = 6;
         ?>
 
             <div class="roundedBorders">
-                <img src="./uploads/default_profile.png" alt="">
+                <img src="./uploads/<?php echo $value['imagem'] ?? 'default_profile.png' ?>" alt="">
                 <hr>
                 <ul>
                     <li><i class="fa-solid fa-pencil"></i>

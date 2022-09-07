@@ -15,8 +15,8 @@ if (isset($_GET['add'])) {
     if (isset($_POST)) {
         $nome = $_POST['nome'];
         $email = $_POST['email'];
-        $tipoCliente = $_POST['tipo_cliente'];
-        $inscricao = $tipoCliente == 'fisico' ? $_POST['cpf'] : $_POST['cnpj'];
+        $tipo = $_POST['tipo_cliente'];
+        $inscricao = $tipo == 'fisico' ? $_POST['cpf'] : $_POST['cnpj'];
 
         $imagem = $_FILES['img'] ?? null;
         // $_FILES['img'] returns {name, type, tmp_name}
@@ -26,22 +26,18 @@ if (isset($_GET['add'])) {
         $imagem = $imagem ? FileUpload::validadeImage('img') : null;
         $imagem = $imagem ? FileUpload::uploadImage('img', false) : null;
 
-        $data['nome'] = $nome;
-        $data['email'] = $email;
-        $data['tipo'] = $tipoCliente;
-        $data['inscricao'] = $inscricao;
-        $data['imagem'] = $imagem ?? null;
+        $data['request'] = $_POST;
         // $data['img'] = $_FILES['img'] ?? null;
         // $data['imgvalid'] = $imagem ? true : false;
 
-        if ($data['imagem'] === false) {
+        if ($imagem === false) {
             $data['success'] = false;
             $data['msg'] = 'imagem invalida';
             die(json_encode($data));
         }
 
         $sql = Sql::connect()->prepare("INSERT INTO `$pageTable` VALUES (null,?,?,?,?,?)");
-        $sqlarray = [$data['nome'], $data['email'], $data['tipo'], $data['inscricao'], $data['imagem']];
+        $sqlarray = [$nome, $email, $tipo, $inscricao, $imagem];
         // $sql->debugDumpParams();
         // print_r($sqlarray);
         // echo "<hr>";
@@ -53,7 +49,7 @@ if (isset($_GET['add'])) {
 
         // IF everything went ok:
         $data['success'] = 'not true';
-        $data['msg'] = 'Cliente inserido com sucesso';
+        $data['msg'] = 'Cliente inserido sem sucesso';
         die(json_encode($data));
     }
 } else if (isset($_GET['delete'])) {
@@ -67,8 +63,8 @@ if (isset($_GET['add'])) {
 
     $id = $_POST['id'];
     // fetch the img path and delete (unlink) the image of the client
-    $sql = sql::connect()->prepare("SELECT imagem FROM `$pageTable` WHERE id = ?");
-    $sql = $sql->execute([$id]);
+    $sql = Sql::connect()->prepare("SELECT imagem FROM `$pageTable` WHERE id = ?");
+    $sql->execute([$id]);
     $imagem = $sql->fetch()['imagem'];
     @unlink('../uploads/' . $imagem);
 
@@ -83,6 +79,58 @@ if (isset($_GET['add'])) {
 
     die(json_encode($data));
 } else if (isset($_GET['edit'])) {
+    $nome = $_POST['nome'];
+    $id = $_POST['id'];
+    $email = $_POST['email'];
+    $tipo = $_POST['tipo_cliente'];
+    $inscricao = $tipo == 'fisico' ? $_POST['cpf'] : $_POST['cnpj'];
+
+    $imagem = $_FILES['img'] ?? null;
+    // $_FILES['img'] returns {name, type, tmp_name}
+
+    // Here is the place for validation and sanitization of text inputs
+    // For the sake of simplicity and flexibility i'm ignoring it and only validating the image format and size.
+    $imagem = $imagem ? FileUpload::validadeImage('img') : null;
+    $imagem = $imagem ? FileUpload::uploadImage('img', false) : null;
+
+    $sql = Sql::connect()->prepare("SELECT imagem FROM `$pageTable` WHERE id = ?");
+    $sql->execute([$id]);
+    // if image true, delete the old one picture, and use it,
+    // Else use this one
+    $oldImagem = $sql->fetch()['imagem'];
+    if (!$imagem) {
+        $imagem = $oldImagem;
+    } else {
+        @unlink('../uploads/' . $oldImagem);
+    }
+
+
+    $data['request'] = $_POST;
+    $data['imagem'] = $imagem;
+    // $data['img'] = $_FILES['img'] ?? null;
+    // $data['imgvalid'] = $imagem ? true : false;
+
+    if ($imagem === false) {
+        $data['success'] = false;
+        $data['msg'] = 'imagem invalida';
+        die(json_encode($data));
+    }
+
+    $sql = Sql::connect()->prepare("UPDATE `$pageTable` SET nome=?, email=?, tipo=?, inscricao=?, imagem=?  WHERE id = ?");
+    $sqlarray = [$nome, $email, $tipo, $inscricao, $imagem, $id];
+    // $sql->debugDumpParams();
+    // print_r($sqlarray);
+    // echo "<hr>";
+    if ($sql->execute($sqlarray)) {
+        $data['success'] = true;
+        $data['msg'] = 'Cliente Atualizado com sucesso';
+        die(json_encode($data));
+    }
+
+    // IF everything went ok:
+    $data['success'] = 'not true';
+    $data['msg'] = 'Cliente inserido sem sucesso';
+    die(json_encode($data));
 }
 
 

@@ -27,7 +27,7 @@ body {
   padding: 0 2%;
 }
 .w100 {
-  width: 50%;
+  width: 100%;
   padding: 0 2%;
 }
 .clear {
@@ -241,6 +241,8 @@ a.btn.edit {
 .cardsWrapper > div > img {
   width: 100%;
   max-height: 300px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 .cardsWrapper > div > ul {
   list-style: none;
