@@ -17,6 +17,28 @@ $maxItemsPerPage = 6;
         $sql = Sql::connect()->prepare("UPDATE `$pageTableFin` SET status = 1 WHERE ID = ?");
         $sql->execute([$_GET['pago']]);
     }
+    if (isset($_GET['email'])) {
+        $parcela_id = $_GET['parcela'];
+        $cliente_id = $_GET['email'];
+        if (isset($_COOKIE['email_cliente_' . $cliente_id])) {
+            Painel::htmlPopUp('error', 'E-mail lembrete já foi enviado');
+        } else {
+            // podemos enviar o e-mail;
+            Painel::htmlPopUp('ok', 'E-mail lembrete foi enviado');
+            setcookie('email_cliente_' . $cliente_id, 'true', time() + 30, '/');
+            // 
+            /* Warning: Cannot modify header information - headers already sent by (output started at path/main.php:127) in path/painel/pages/clientesFinanceiro.php on line 28
+            * It is what it is, for this cookie to be set, it should be included in the response header before the html content, as such, it would require a new blank page where the headers could be send first including the cookie, or the whole painel should be refactored to accomodate this e-mail request.
+            * in my opinion it would be easier to make a ajax request to an page or using a redirect page that would trigger the e-mail and then redirect back.
+            */
+            // $info cliente = sql:$pageTable
+            // $info financeiro = sql:$pageTable
+            // $emailBody = '...'
+            // $email = new Email ...
+            // $email->addRecipient(info[email])
+            // $email->formatMail(array)
+        }
+    }
     ?>
     <br><!-- Visualizar pagamentos pendentes -->
     <h2>
@@ -71,7 +93,7 @@ $maxItemsPerPage = 6;
                     }
                     // Reminder mail
 
-                    echo "<td><a class='btn' href='./clientesFinanceiro?remind=$value[id]'>Remind</a></td>";
+                    echo "<td><a class='btn' href='./clientesFinanceiro?email=$value[cliente_id]&parcela=$value[id]'>Remind</a></td>";
                     echo "<td><a class='btn' href='./clientesFinanceiro?pago=$value[id]'>Pago</a>";
                     echo "<td><a confirm href=''>confirm</a></td>";
 
