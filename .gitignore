@@ -1,13 +1,21 @@
 config.php
 fontawesome/
 bootstrap-5.2.0/
-classes/Facebook/
-classes/Google/
-classes/GuzzleHttp/
-classes/Monolog/
-classes/PHPMailer/
-classes/Psr/
-classes/Wideimage/
+
 js/tinymce/
+
 painel/pages/old/
 painel/uploads/
+
+painel/vendor/*/
+#Except vender/composer
+!painel/vendor/composer/
+
+classes/*/
+# classes/Facebook/
+# classes/Google/
+# classes/GuzzleHttp/
+# classes/Monolog/
+# classes/PHPMailer/
+# classes/Psr/
+# classes/Wideimage/
