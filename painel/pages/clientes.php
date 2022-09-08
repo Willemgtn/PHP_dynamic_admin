@@ -54,13 +54,20 @@ $maxItemsPerPage = 6;
         $valor = str_replace(',', '.', $valor);
         $parcelas = $_POST['parcelas'];
         $vencimento = $_POST['vencimento'];
-        // $intervalo = $_POST['intervalo'];
+        $intervalo = $_POST['intervalo'];
+        $n_intervalo = $_POST['n_intervalo'];
 
         for ($i = 0; $i < $parcelas; $i++) {
-            $fut_venc = date('Y-m-d', strtotime($vencimento . " + $i months"));
+            // $venc = ($i * $n_intervalo) . " " . $intervalo;
+            $fut_venc = date('Y-m-d', strtotime($vencimento . " + " . ($i * $n_intervalo) . " " . $intervalo));
             $sql = Sql::connect()->prepare("INSERT INTO `$pageTableFin` VALUES (null,?,?,?,?,?,?)");
             $sql->execute([$cliente_id, $nome, $valor, $parcelas, $fut_venc, 0]);
         }
+    }
+
+    if (isset($_GET['pago'])) {
+        $sql = Sql::connect()->prepare("UPDATE `$pageTableFin` SET status = 1 WHERE ID = ?");
+        $sql->execute([$_GET['pago']]);
     }
 ?>
     <section id="" class="new-form">
@@ -108,15 +115,22 @@ $maxItemsPerPage = 6;
             <i class="fa-solid fa-pencil"></i>
             Adicionar Pagamentos
         </h2>
-        <form action="" method="post">
+        <form action="./clientes?edit=<?php echo $_GET['edit'] ?>" method="post">
             <label for="pagamento">Nome do pagamento:</label>
             <input type="text" name="pagamento" id="">
             <label for="valor">Valor do pagamento:</label>
             <input type="text" name="valor" id="" mask="brl">
             <label for="parcelas">Número de parcelas:</label>
             <input type="text" name="parcelas" id="">
-            <!-- <label for="intervalo">Intervalo em dias:</label>
-            <input type="text" name="intervalo" id=""> -->
+            <label for="intervalo">Intervalo em dias:</label>
+            <!-- <input type="text" name="intervalo" id=""> -->
+            <input type="number" name="n_intervalo" value="1" min="1" max="99">
+            <select name="intervalo" id="">
+                <option value="day">Dia</option>
+                <option value="week">Semana</option>
+                <option value="month" selected>Mes</option>
+            </select>
+
             <label for="vencimento">Data de vencimento:</label>
             <input type="text" name="vencimento" class="datepicker" style="width: unset">
             <input type="submit" value="Inserir Pagamento">
@@ -147,13 +161,7 @@ $maxItemsPerPage = 6;
                 // $pag_pend->debugDumpParams();
                 $pag_pend = $pag_pend->fetchAll(PDO::FETCH_ASSOC);
                 if ($pag_pend) {
-                    // echo 'yes';
-                    // print_r($pag_pend);
                     foreach ($pag_pend as $key => $value) {
-                        // print_r($value['vencimento']);
-                        // echo "<br>";
-                        // echo (time() >= strtotime($value['vencimento']));
-                        // echo "<br>";
                         echo (time() >= strtotime($value['vencimento'])) ? '<tr style="background:lightcoral;">' : '<tr>';
                         foreach ($value as $key2 => $value2) {
                             if ($key2 == 'id') continue;
@@ -161,6 +169,13 @@ $maxItemsPerPage = 6;
                             echo "<td>$value2</td>";
                         }
                         // Reminder mail
+                        if ($value['status']) {
+                            echo "<td>Remind</td><td>Pago</td>";
+                        } else {
+                            echo "<td><a class='btn' href='./clientes?edit=$value[cliente_id]&remind=$value[id]'>Remind</a></td>";
+                            echo "<td><a class='btn' href='./clientes?edit=$_GET[edit]&pago=$value[id]'>Pago</a>";
+                            echo "<td><a confirm href=''>confirm</a></td>";
+                        }
                         // Paid button $value['id'];
                         echo "</tr>";
                     }
@@ -173,6 +188,49 @@ $maxItemsPerPage = 6;
             <i class="fa-solid fa-pencil"></i>
             Pagamentos Concluidos
         </h2>
+        <table>
+            <thead>
+                <tr>
+                    <!-- <td>Cliente id</td> -->
+                    <td>Descrição</td>
+                    <td>Valor</td>
+                    <td>qt. Parcelas</td>
+                    <td>Vencimento</td>
+                    <td>status</td>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- SQL Template here -->
+                <?php
+                $pag_pend = Sql::connect()->prepare("SELECT * FROM `$pageTableFin` WHERE cliente_id = ? and status = 1 ORDER BY vencimento ASC");
+                $pag_pend->execute([$_GET['edit']]);
+                // $pag_pend->debugDumpParams();
+                $pag_pend = $pag_pend->fetchAll(PDO::FETCH_ASSOC);
+                if ($pag_pend) {
+                    foreach ($pag_pend as $key => $value) {
+                        // echo (time() >= strtotime($value['vencimento'])) ? '<tr style="background:lightcoral;">' : '<tr>';
+                        echo "<tr>";
+                        foreach ($value as $key2 => $value2) {
+                            if ($key2 == 'id') continue;
+                            if ($key2 == 'cliente_id') continue;
+                            echo "<td>$value2</td>";
+                        }
+                        // Reminder mail
+                        // if ($value['status']) {
+                        //     echo "<td>Remind</td><td>Pago</td>";
+                        // } else {
+                        //     echo "<td><a class='btn' href='./clientes?edit=$value[cliente_id]&remind=$value[id]'>Remind</a></td>";
+                        //     echo "<td><a class='btn' href='./clientes?edit=$_GET[edit]&pago=$value[id]'>Pago</a>";
+                        //     echo "<td><a confirm href=''>confirm</a></td>";
+                        // }
+                        // Paid button $value['id'];
+                        echo "</tr>";
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
     </section>
 <?php }
 ?>

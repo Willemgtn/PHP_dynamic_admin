@@ -28,8 +28,8 @@ $(function () {
     }
   });
 
-  $("[name=parcelas],[name=intervalo]").mask("99");
-  $("[name=parcelas],[name=intervalo]").attr("placeholder", "01");
+  $("[name=parcelas],[name=n_intervalo]").mask("99");
+  $("[name=parcelas],[name=n_intervalo]").attr("placeholder", "01");
   $("[mask=brl]").attr("placeholder", "R$ 0,00");
   $("[mask=brl]").maskMoney({
     prefix: "R$ ",
