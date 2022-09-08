@@ -20,6 +20,9 @@ if (isset($_GET['logout'])) {
     <!-- End External instance -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"> -->
     <!-- END bootstrap icons -->
+    <!-- for the most recent version of the "bootstrap" theme -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/zebra_datepicker@latest/dist/css/bootstrap/zebra_datepicker.min.css"> -->
+
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="../fontawesome/css/all.css">
     <link rel="stylesheet" href="./css/main.css">
@@ -75,8 +78,8 @@ if (isset($_GET['logout'])) {
 
 
                 ['permission' => '1', 'type' => 'title', 'content' => 'Internal'],
-                ['permission' => '1', 'type' => 'link', 'link' => './clientes', 'content' => 'Gestão Cliente'],
-                // ['permission' => '1', 'type' => 'link', 'link' => '?url=addService', 'content' => 'Cadastro Serviços'],
+                ['permission' => '1', 'type' => 'link', 'link' => './clientes', 'content' => 'Clientes Gestão'],
+                ['permission' => '1', 'type' => 'link', 'link' => './clientes-funanceiro', 'content' => 'Clientes Financeiro'],
                 // ['permission' => '1', 'type' => 'link', 'link' => '?url=addSlide', 'content' => 'Cadastro Slides'],
 
                 // ['permission' => '0', 'type' => 'title', 'content' => 'Gestão'],
@@ -202,7 +205,10 @@ if (isset($_GET['logout'])) {
             include('./pages/section-viewMetrics.php');
             include('./pages/section-users.php');
         }
+        echo '<hr> GET: ';
         print_r($_GET);
+        echo '<hr> POST:';
+        print_r($_POST);
         echo '<hr>';
 
         ?>
@@ -225,7 +231,7 @@ if (isset($_GET['logout'])) {
 
     <?php
     // Loading page specific js scripts
-    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js'], 'clientes', true);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery.zebra.dataPicker.js', 'jquery.form.js', 'ajax.js'], 'clientes', true);
     // Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js', 'cliente.js'], 'clients/add', true);
 
     ?>

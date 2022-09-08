@@ -27,4 +27,16 @@ $(function () {
       $("[for=inscricao]").html("CNPJ:");
     }
   });
+
+  $("[name=parcelas],[name=intervalo]").mask("99");
+  $("[name=parcelas],[name=intervalo]").attr("placeholder", "01");
+  $("[mask=brl]").attr("placeholder", "R$ 0,00");
+  $("[mask=brl]").maskMoney({
+    prefix: "R$ ",
+    allowNegative: true,
+    thousands: ".",
+    decimal: ",",
+    affixesStay: false,
+  });
+  $("input.datepicker").Zebra_DatePicker();
 });

@@ -53,8 +53,8 @@ if (isset($_GET['add'])) {
         die(json_encode($data));
     }
 } else if (isset($_GET['delete'])) {
-    $data['success'] = 'true';
-    $data['msg'] = 'Delete scope reached ready to execute function';
+    // $data['success'] = 'true';
+    // $data['msg'] = 'Delete scope reached ready to execute function';
     $data['request'] = $_POST;
 
     // Receive the post id of the client to be deleted.

@@ -1,5 +1,6 @@
 <?php
 $pageTable = 'tb_admin.clientes';
+$pageTableFin = 'tb_admin.clientes-financeiro';
 function pageUrl($next = null)
 {
     $baseUrl = './clientes';
@@ -44,6 +45,23 @@ $maxItemsPerPage = 6;
     $cliente = Sql::connect()->prepare("SELECT * FROM `$pageTable` WHERE id = ?");
     $cliente->execute([$_GET['edit']]);
     $cliente = $cliente->fetch();
+
+    if (isset($_POST['pagamento'])) {
+        $cliente_id = $_GET['edit'];
+        $nome = $_POST['pagamento'];
+        $valor = $_POST['valor'];
+        $valor = str_replace('.', '', $valor);
+        $valor = str_replace(',', '.', $valor);
+        $parcelas = $_POST['parcelas'];
+        $vencimento = $_POST['vencimento'];
+        // $intervalo = $_POST['intervalo'];
+
+        for ($i = 0; $i < $parcelas; $i++) {
+            $fut_venc = date('Y-m-d', strtotime($vencimento . " + $i months"));
+            $sql = Sql::connect()->prepare("INSERT INTO `$pageTableFin` VALUES (null,?,?,?,?,?,?)");
+            $sql->execute([$cliente_id, $nome, $valor, $parcelas, $fut_venc, 0]);
+        }
+    }
 ?>
     <section id="" class="new-form">
         <h2>
@@ -81,6 +99,80 @@ $maxItemsPerPage = 6;
             <input type="submit" value="Atualizar" disabled>
 
         </form>
+        <!-- for the most recent version of the "default" theme -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/zebra_datepicker@latest/dist/css/default/zebra_datepicker.min.css">
+
+        <!-- replacing "min" with "src" will serve you the non-compressed version -->
+        <br><!-- Adicionar pagamentos -->
+        <h2>
+            <i class="fa-solid fa-pencil"></i>
+            Adicionar Pagamentos
+        </h2>
+        <form action="" method="post">
+            <label for="pagamento">Nome do pagamento:</label>
+            <input type="text" name="pagamento" id="">
+            <label for="valor">Valor do pagamento:</label>
+            <input type="text" name="valor" id="" mask="brl">
+            <label for="parcelas">Número de parcelas:</label>
+            <input type="text" name="parcelas" id="">
+            <!-- <label for="intervalo">Intervalo em dias:</label>
+            <input type="text" name="intervalo" id=""> -->
+            <label for="vencimento">Data de vencimento:</label>
+            <input type="text" name="vencimento" class="datepicker" style="width: unset">
+            <input type="submit" value="Inserir Pagamento">
+        </form>
+        <br><!-- Visualizar pagamentos pendentes -->
+        <h2>
+            <i class="fa-solid fa-pencil"></i>
+            Pagamentos Pendentes
+        </h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <!-- <td>Cliente id</td> -->
+                    <td>Descrição</td>
+                    <td>Valor</td>
+                    <td>qt. Parcelas</td>
+                    <td>Vencimento</td>
+                    <td>status</td>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- SQL Template here -->
+                <?php
+                $pag_pend = Sql::connect()->prepare("SELECT * FROM `$pageTableFin` WHERE cliente_id = ? and status = 0 ORDER BY vencimento ASC");
+                $pag_pend->execute([$_GET['edit']]);
+                // $pag_pend->debugDumpParams();
+                $pag_pend = $pag_pend->fetchAll(PDO::FETCH_ASSOC);
+                if ($pag_pend) {
+                    // echo 'yes';
+                    // print_r($pag_pend);
+                    foreach ($pag_pend as $key => $value) {
+                        // print_r($value['vencimento']);
+                        // echo "<br>";
+                        // echo (time() >= strtotime($value['vencimento']));
+                        // echo "<br>";
+                        echo (time() >= strtotime($value['vencimento'])) ? '<tr style="background:lightcoral;">' : '<tr>';
+                        foreach ($value as $key2 => $value2) {
+                            if ($key2 == 'id') continue;
+                            if ($key2 == 'cliente_id') continue;
+                            echo "<td>$value2</td>";
+                        }
+                        // Reminder mail
+                        // Paid button $value['id'];
+                        echo "</tr>";
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+        <br><!-- Visualizar pagamentos Concluidos -->
+        <h2>
+            <i class="fa-solid fa-pencil"></i>
+            Pagamentos Concluidos
+        </h2>
     </section>
 <?php }
 ?>
