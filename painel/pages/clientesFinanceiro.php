@@ -23,7 +23,7 @@ $maxItemsPerPage = 6;
         <i class="fa-solid fa-pencil"></i>
         Pagamentos Pendentes
     </h2>
-    <a href="./gerarPdf?pagamento=pendente" target="_blank" rel="noopener noreferrer" class="btn red">Gerar pdf</a>
+    <a href="./pages/gerarPdf.php?pagamento=pendente" target="_blank" rel="noopener noreferrer" class="btn red">Gerar pdf</a>
     <table>
         <thead>
             <tr>
@@ -87,6 +87,8 @@ $maxItemsPerPage = 6;
         <i class="fa-solid fa-pencil"></i>
         Pagamentos Concluidos
     </h2>
+    <a href="./pages/gerarPdf.php?pagamento=concluido" target="_blank" rel="noopener noreferrer" class="btn red">Gerar pdf</a>
+
     <br>
     <table>
         <thead>
