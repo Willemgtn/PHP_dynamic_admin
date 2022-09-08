@@ -37,6 +37,10 @@ section.new-form form input[type="submit"] {
   cursor: pointer;
 }
 
+section.new-form form div.d-flex {
+  display: block;
+}
+
 /* Estilização de formulario de busca  */
 form.search {
   display: flex;

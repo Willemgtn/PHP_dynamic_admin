@@ -21,7 +21,7 @@ $sql = DButils2::selectWhere('*', $pageTable, 'id = 1');
 $sql = $sql[0];
 ?>
 
-<section class="" id="editPage">
+<section class="new-form" id="editPage">
     <h2>Edit Page Details.</h2>
     <form action="" method="post">
         <div class="d-flex">
@@ -54,7 +54,8 @@ $sql = $sql[0];
         </div>
     </form> <br>
 </section>
-<section>
+<!-- Todo section reminder -->
+<section class="new-form">
     <h2>Todo</h2>
     <form action="" method="post" enctype="multipart/form-data">
         <div class="d-flex file">
@@ -78,7 +79,7 @@ $sql = $sql[0];
 
 </section>
 
-<section id="editEspecialidades">
+<section class="new-form" id="editEspecialidades">
     <h2>List current "Especialidades"</h2>
 
     <form action="" method="post">

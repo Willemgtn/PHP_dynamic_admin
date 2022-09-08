@@ -7,7 +7,7 @@ function pageUrl($next = null)
 }
 ?>
 <?php if (isset($_GET['add'])) { ?>
-    <section>
+    <section class="new-form">
         <?php
         if (isset($_POST['submit'])) {
             if (DButils::flexInsert($pageTable, $_POST)) {
@@ -147,7 +147,7 @@ if (isset($_GET['edit'])) {
     // foreach ($sql as $key => $value) {  
     // SQL::connect() -> execute("SELECT id FROM `$pageTable` ORDER BY id DESC LIMIT 1") -> fetch()['id']
 ?>
-    <section>
+    <section class="new-form">
         <h2>
             <i class="fa-solid fa-pencil"></i>
             Edit Testimony

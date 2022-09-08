@@ -236,7 +236,7 @@ a.btn.edit {
   display: inline-block;
   max-width: 300px;
   position: relative;
-  margin-bottom: 10px;
+  margin: 10px;
   /* flexing css muscles */
   display: flex;
   flex-direction: column;
