@@ -79,7 +79,7 @@ if (isset($_GET['logout'])) {
 
                 ['permission' => '1', 'type' => 'title', 'content' => 'Internal'],
                 ['permission' => '1', 'type' => 'link', 'link' => './clientes', 'content' => 'Clientes Gestão'],
-                ['permission' => '1', 'type' => 'link', 'link' => './clientes-funanceiro', 'content' => 'Clientes Financeiro'],
+                ['permission' => '1', 'type' => 'link', 'link' => './clientesFinanceiro', 'content' => 'Clientes Financeiro'],
                 // ['permission' => '1', 'type' => 'link', 'link' => '?url=addSlide', 'content' => 'Cadastro Slides'],
 
                 // ['permission' => '0', 'type' => 'title', 'content' => 'Gestão'],

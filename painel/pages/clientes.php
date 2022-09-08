@@ -122,7 +122,7 @@ $maxItemsPerPage = 6;
             <input type="text" name="valor" id="" mask="brl">
             <label for="parcelas">Número de parcelas:</label>
             <input type="text" name="parcelas" id="">
-            <label for="intervalo">Intervalo em dias:</label>
+            <label for="intervalo">Intervalo:</label>
             <!-- <input type="text" name="intervalo" id=""> -->
             <input type="number" name="n_intervalo" value="1" min="1" max="99">
             <select name="intervalo" id="">
