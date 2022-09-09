@@ -32,6 +32,10 @@ section.new-form form input[type="file"] {
   border-radius: 0.8em;
 }
 
+section.new-form form input[type="number"] {
+  margin-top: 16px;
+  width: unset;
+}
 section.new-form form input[type="submit"] {
   margin-top: 16px;
   cursor: pointer;
@@ -39,6 +43,12 @@ section.new-form form input[type="submit"] {
 
 section.new-form form div.d-flex {
   display: block;
+}
+
+section.new-form form div.form-row {
+  display: flex;
+  align-items: baseline;
+  margin-top: 16px;
 }
 
 /* Estilização de formulario de busca  */

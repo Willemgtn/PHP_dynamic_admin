@@ -78,6 +78,80 @@ class FileUpload
             }
         }
     }
+    static function arrImageValidate(array $imgArray, $debug = false)
+    {
+        $uploadOk = 1;
+        if ($debug) {
+            print_r($imgArray);
+            echo "<br>";
+        }
+        $target_file = self::$target_dir . basename($imgArray["name"]);
+
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        // Check if image file is a actual image or fake image
+
+        @$check = getimagesize($imgArray["tmp_name"]);
+        if ($check !== false) {
+            if ($debug) echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            if ($debug) echo "File is not an image.";
+            $uploadOk = 0;
+            return false;
+        }
+        if ($debug) {
+            echo "<pre>";
+            print_r($_FILES);
+            echo "</pre>";
+        }
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            if ($debug) echo "Sorry, file already exists.";
+            $uploadOk = 0;
+            return false;
+        }
+
+        // Check file size
+        if (intval($imgArray["size"]) / 1024 > 1500) {
+            if ($debug) echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+            return false;
+        }
+
+        // Allow certain file formats
+        if (
+            $imageFileType != "jpg" &&
+            $imageFileType != "png" &&
+            $imageFileType != "jpeg" &&
+            $imageFileType != "webp" &&
+            $imageFileType != "gif"
+        ) {
+            if ($debug) echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+            return false;
+        }
+        return $uploadOk;
+    }
+
+    static function arrImageUpload(array $imgArray, $debug = false)
+    {
+        $uniqueFileName = uniqid() . '.' . strtolower(pathinfo($imgArray["name"], PATHINFO_EXTENSION));
+        $target_file = self::$target_dir . basename($uniqueFileName);
+        // $target_file = self::$target_dir . basename($imgArray["name"]);
+
+        if (self::arrImageValidate($imgArray) == 0) {
+            if ($debug)  echo "Sorry, your file was not uploaded.";
+        } else {
+            if (move_uploaded_file($imgArray["tmp_name"], $target_file)) {
+                if ($debug) echo "The file " . htmlspecialchars(basename($imgArray["name"])) . " has been uploaded.";
+                return $uniqueFileName;
+            } else {
+                if ($debug) echo "Sorry, there was an error uploading your file.";
+                return false;
+            }
+        }
+    }
     static function deleteFIle($file)
     {
         @unlink(self::$target_dir . $file);
