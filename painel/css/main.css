@@ -245,10 +245,11 @@ a.btn.edit {
   flex-grow: 1;
 }
 .cardsWrapper > div > img {
-  width: 100%;
+  /* width: 100%; */
   max-height: 300px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  object-fit: contain;
 }
 .cardsWrapper > div > ul {
   list-style: none;
