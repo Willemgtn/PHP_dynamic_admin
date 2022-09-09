@@ -78,10 +78,10 @@ class Painel
     {
         switch ($htmlClass) {
             case 'ok':
-                $icon = '<i class="fa-solid fa-check"></i>';
+                $icon = '<i class="fa-solid fa-check"></i> ';
                 break;
             case 'error':
-                $icon = '<i class="fa-solid fa-xmark"></i>';
+                $icon = '<i class="fa-solid fa-xmark"></i> ';
                 break;
 
             default:

@@ -1,6 +1,6 @@
 <?php
-$pageTable = 'tb_admin.clientes';
-$pageTableFin = 'tb_admin.clientes-financeiro';
+$pageTable = 'tb_admin.estoque';
+$pageTableImg = 'tb_admin.estoque_imagens';
 function pageUrl($next = null)
 {
     $baseUrl = './clientes';
@@ -21,7 +21,7 @@ $maxItemsPerPage = 6;
     </h2>
     <?php
     if (isset($_POST['submit'])) {
-        Painel::htmlPopUp('ok', 'O produto foi cadastrado com sucesso');
+        // Painel::htmlPopUp('ok', 'O produto foi cadastrado com sucesso');
         $nome = $_POST['nome'];
         $descricao = $_POST['descricao'];
         $largura = $_POST['largura'];
@@ -46,15 +46,26 @@ $maxItemsPerPage = 6;
                     $imagens[] = $imagem;
                 }
             }
-            if ($imagens) {
-                Painel::htmlPopUp('ok', 'continue');
+            echo "Validated " . count($imagens) . " images";
+            if (@$imagens) {
+                // Painel::htmlPopUp('ok', 'continue');
+                foreach ($imagens as $key => $value) {
+                    $imagens[$key]['upload_name'] = FileUpload::arrImageUpload($value);
+                }
+                echo "<pre>";
+                print_r($imagens);
+                echo "</pre>";
+
+                $sql = Sql::connect()->prepare("INSERT INTO `$pageTable` VALUES (null,?,?,?,?,?,?,?)");
+                $sql->execute([$nome, $descricao, $largura, $altura, $comprimento, $peso, $quantidade]);
+                $lastInsertedId = Sql::connect()->lastInsertId();
+                foreach ($imagens as $key => $value) {
+                    Sql::connect()->exec("INSERT INTO `$pageTableImg` VALUES (null,$lastInsertedId,'$value[upload_name]')");
+                }
+                Painel::htmlPopUp('ok', 'Produto Cadastrado');
+            } else {
+                Painel::htmlPopUp('error', 'Nenhuma foto selecionada é valida');
             }
-            foreach ($imagens as $key => $value) {
-                // $imagens[$key]['upload_name'] = FileUpload::arrImageUpload($value);
-            }
-            echo "<pre>";
-            print_r($imagens);
-            echo "</pre>";
         } else {
             Painel::htmlPopUp('error', 'Por favor selecione alguma foto');
         }
