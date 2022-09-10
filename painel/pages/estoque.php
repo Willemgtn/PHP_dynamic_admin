@@ -100,10 +100,8 @@ $maxItemsPerPage = 6;
 ?>
 <?php if (isset($_GET['edit'])) {
     $edit = (int)$_GET['edit'];
-    $productInfo = Sql::connect()->query("SELECT * FROM `$pageTable` WHERE id = $edit");
-    $productInfo = $productInfo->fetch();
-    $productInfoImg = Sql::connect()->query("SELECT * FROM `$pageTableImg` WHERE produto_id = $edit");
-    $productInfoImg = $productInfoImg->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
     <section id="" class="new-form">
         <h2>
@@ -123,6 +121,9 @@ $maxItemsPerPage = 6;
 
             $ok = true;
 
+            $sql = Sql::connect()->prepare("UPDATE `$pageTable` SET nome=?, descricao=?, largura=?, altura=?, comprimento=?, peso=?, quantidade=? WHERE id = ?");
+            $sql->execute([$nome, $descricao, $largura, $altura, $comprimento, $peso, $quantidade, $edit]);
+
             // $images;
             if ($_FILES['img']['name'][0] != '') {
                 for ($i = 0; $i < count($_FILES['img']['name']); $i++) {
@@ -137,6 +138,7 @@ $maxItemsPerPage = 6;
                         $imagens[] = $imagem;
                     }
                 }
+
                 // echo "Validated " . count($imagens) . " images";
                 if (@$imagens) {
                     // Painel::htmlPopUp('ok', 'continue');
@@ -147,33 +149,75 @@ $maxItemsPerPage = 6;
                     // print_r($imagens);
                     // echo "</pre>";
 
-                    $sql = Sql::connect()->prepare("INSERT INTO `$pageTable` VALUES (null,?,?,?,?,?,?,?)");
-                    $sql->execute([$nome, $descricao, $largura, $altura, $comprimento, $peso, $quantidade]);
-                    $lastInsertedId = Sql::connect()->lastInsertId();
+
                     foreach ($imagens as $key => $value) {
-                        Sql::connect()->exec("INSERT INTO `$pageTableImg` VALUES (null,$lastInsertedId,'$value[upload_name]')");
+                        Sql::connect()->exec("INSERT INTO `$pageTableImg` VALUES (null,$edit,'$value[upload_name]')");
                     }
-                    Painel::htmlPopUp('ok', 'Produto Cadastrado');
+                    Painel::htmlPopUp('ok', 'Produto foi Atualizado');
                 } else {
                     Painel::htmlPopUp('error', 'Nenhuma foto selecionada é valida');
                 }
+            }
+            // else {
+            // No image to add
+            //     Painel::htmlPopUp('error', 'Por favor selecione alguma foto');
+            // }
+        }
+        if (isset($_POST['atualizar'])) {
+            $quantidade = (int)$_POST['quantidade'];
+            $produto_id = (int)$_POST['produto_id'];
+            if ($quantidade < 0) {
+                Painel::htmlPopUp('error', 'Me explique como você ficou devendo mercadorias');
             } else {
-                Painel::htmlPopUp('error', 'Por favor selecione alguma foto');
+                $update = Sql::connect()->prepare("UPDATE `$pageTable` SET quantidade = ? WHERE id = ?");
+                if ($update->execute([$quantidade, $produto_id])) {
+                    Painel::htmlPopUp('ok', 'Atualizado com sucesso');
+                } else {
+                    Painel::htmlPopUp('error', 'Erro Interno');
+                }
             }
         }
+        if (isset($_GET['deleteImg'])) {
+            $delete = (int)$_GET['deleteImg'];
+            if (is_int(intval($_GET['deleteImg']))) {
+                $product = Sql::connect()->prepare("SELECT id FROM `$pageTable` WHERE id = ?");
+                $product->execute([$edit]);
+                // echo $product->rowCount();
+                if ($product->rowCount() == 1) {
+                    // product exists, proceed to delete it.
+                    $productImages = Sql::connect()->prepare("SELECT imagem FROM `$pageTableImg` WHERE id = ?");
+                    $productImages->execute([$delete]);
+                    $productImages = $productImages->fetchAll();
+                    foreach ($productImages as $key => $value) {
+                        // echo "<img src='./uploads/$value[imagem]'>";
+                        @unlink('./uploads/' . $value['imagem']);
+                    }
+
+
+                    $productImages = Sql::connect()->prepare("DELETE FROM `$pageTableImg` WHERE id = ?");
+                    $productImages->execute([$delete]);
+
+                    Painel::htmlPopUp('ok', 'Images was deleted.');
+                }
+                // print_r($product->fetch());
+            } else {
+                Painel::htmlPopUp('error', 'Sql injection?');
+            }
+        }
+        // Product SQL QUERY
+        $productInfo = Sql::connect()->query("SELECT * FROM `$pageTable` WHERE id = $edit");
+        $productInfo = $productInfo->fetch();
+        // Image SQL QUERY
+        $productInfoImg = Sql::connect()->query("SELECT * FROM `$pageTableImg` WHERE produto_id = $edit");
+        $productInfoImg = $productInfoImg->fetchAll(PDO::FETCH_ASSOC);
         ?>
-        <div>
-            <pre>
-                <?php print_r($productInfoImg)
-                ?>
-            </pre>
-        </div>
+
         <div class="productInfoImg">
             <?php
             foreach ($productInfoImg as $key => $value) {
-                for ($i = 0; $i < 10; $i++) {
-                    echo "<div><img src='./uploads/$value[imagem]'><a href='#'>X Excluir</a></div>";
-                }
+                // for ($i = 0; $i < 10; $i++) {
+                echo "<div><img src='./uploads/$value[imagem]'><a href='estoque?edit=$edit&deleteImg=$value[id]'>X Excluir</a></div>";
+                // }
             }
             ?>
         </div>
@@ -181,7 +225,7 @@ $maxItemsPerPage = 6;
             <label for="nome">Nome do produto:</label>
             <input type="text" name="nome" id="" placeholder="Nome do Cliente/Empresa" value="<?php echo $productInfo['nome'] ?>">
             <label for="descricao">Descrição do produto:</label>
-            <textarea class="tiny" name="descricao" id="" cols="" rows=""><?php echo $productInfo['descricao'] ?>"</textarea>
+            <textarea class="tiny" name="descricao" id="" cols="" rows=""><?php echo $productInfo['descricao'] ?></textarea>
             <!-- <input type="descricao" name="text" id="" placeholder="Descricao do produto"> -->
             <!-- <div class="form-row" style="display: flex;"> -->
             <label for="largura">Largura:</label>
@@ -198,7 +242,7 @@ $maxItemsPerPage = 6;
 
             <label for="img">Selecione as imagens:</label>
             <input multiple type="file" name="img[]" id="">
-            <input type="submit" name="submit" value="Cadastrar">
+            <input type="submit" name="submit" value="Alterar">
 
         </form>
     </section>
@@ -247,14 +291,15 @@ $maxItemsPerPage = 6;
             }
         }
         if (isset($_GET['delete'])) {
+            $delete = (int)$_GET['delete'];
             if (is_int(intval($_GET['delete']))) {
                 $product = Sql::connect()->prepare("SELECT id FROM `$pageTable` WHERE id = ?");
-                $product->execute([$_GET['delete']]);
+                $product->execute([$delete]);
                 // echo $product->rowCount();
                 if ($product->rowCount() == 1) {
                     // product exists, proceed to delete it.
                     $productImages = Sql::connect()->prepare("SELECT imagem FROM `$pageTableImg` WHERE produto_id = ?");
-                    $productImages->execute([$_GET['delete']]);
+                    $productImages->execute([$delete]);
                     $productImages = $productImages->fetchAll();
                     foreach ($productImages as $key => $value) {
                         // echo "<img src='./uploads/$value[imagem]'>";
@@ -263,9 +308,9 @@ $maxItemsPerPage = 6;
 
 
                     $productImages = Sql::connect()->prepare("DELETE FROM `$pageTableImg` WHERE produto_id = ?");
-                    $productImages->execute([$_GET['delete']]);
+                    $productImages->execute([$delete]);
                     $product = Sql::connect()->prepare("DELETE FROM `$pageTable` WHERE id = ?");
-                    $product->execute([$_GET['delete']]);
+                    $product->execute([$delete]);
                     Painel::htmlPopUp('ok', 'Product and images were deleted.');
                 }
                 // print_r($product->fetch());
