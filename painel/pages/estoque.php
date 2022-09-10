@@ -73,7 +73,7 @@ $maxItemsPerPage = 6;
         ?>
         <form class="" action="" method="post" enctype="multipart/form-data" resetar>
             <label for="nome">Nome do produto:</label>
-            <input type="text" name="nome" id="" placeholder="Nome do Cliente/Empresa">
+            <input type="text" name="nome" id="" placeholder="Nome do produto">
             <label for="descricao">Descrição do produto:</label>
             <textarea class="tiny" name="descricao" id="" cols="" rows=""></textarea>
             <!-- <input type="descricao" name="text" id="" placeholder="Descricao do produto"> -->
@@ -223,7 +223,7 @@ $maxItemsPerPage = 6;
         </div>
         <form class="" action="" method="post" enctype="multipart/form-data" resetar>
             <label for="nome">Nome do produto:</label>
-            <input type="text" name="nome" id="" placeholder="Nome do Cliente/Empresa" value="<?php echo $productInfo['nome'] ?>">
+            <input type="text" name="nome" id="" placeholder="Nome do produto" value="<?php echo $productInfo['nome'] ?>">
             <label for="descricao">Descrição do produto:</label>
             <textarea class="tiny" name="descricao" id="" cols="" rows=""><?php echo $productInfo['descricao'] ?></textarea>
             <!-- <input type="descricao" name="text" id="" placeholder="Descricao do produto"> -->
