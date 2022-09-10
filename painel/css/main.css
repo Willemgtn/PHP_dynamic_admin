@@ -259,3 +259,30 @@ a.btn.edit {
   list-style: none;
   margin: 10px;
 }
+
+/* productInfoImg Image Wrapper  */
+.productInfoImg {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.productInfoImg > div {
+  width: 300px;
+  text-align: center;
+  margin: 4px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.productInfoImg > div > img {
+  object-fit: contain;
+  width: 100%;
+  border-radius: 10px;
+}
+.productInfoImg > div > a {
+  display: inline-block;
+  text-decoration: none;
+  background: lightcoral;
+  padding: 4px;
+  margin: 2px;
+  border-radius: 5px;
+}
