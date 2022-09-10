@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('../config.php');
 
 ViewMetrics::updateOnlineUser();
@@ -39,7 +40,7 @@ if (Painel::logado() == false) {
 }
 
 
-
+ob_end_flush();
 ?>
 <?php
 

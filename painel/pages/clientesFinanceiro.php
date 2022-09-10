@@ -30,6 +30,8 @@ $maxItemsPerPage = 6;
             /* Warning: Cannot modify header information - headers already sent by (output started at path/main.php:127) in path/painel/pages/clientesFinanceiro.php on line 28
             * It is what it is, for this cookie to be set, it should be included in the response header before the html content, as such, it would require a new blank page where the headers could be send first including the cookie, or the whole painel should be refactored to accomodate this e-mail request.
             * in my opinion it would be easier to make a ajax request to an page or using a redirect page that would trigger the e-mail and then redirect back.
+            *
+            * ob_start AND ob_end_flush() at the core of the websites does the trick
             */
             // $info cliente = sql:$pageTable
             // $info financeiro = sql:$pageTable
@@ -45,7 +47,7 @@ $maxItemsPerPage = 6;
         <i class="fa-solid fa-pencil"></i>
         Pagamentos Pendentes
     </h2>
-    <a href="./pages/gerarPdf.php?pagamento=pendente" target="_blank" rel="noopener noreferrer" class="btn red">Gerar pdf</a>
+    <a href="./gerarPdf?pagamento=pendente" target="_blank" rel="noopener noreferrer" class="btn red">Gerar pdf</a>
     <table>
         <thead>
             <tr>
@@ -109,7 +111,7 @@ $maxItemsPerPage = 6;
         <i class="fa-solid fa-pencil"></i>
         Pagamentos Concluidos
     </h2>
-    <a href="./pages/gerarPdf.php?pagamento=concluido" target="_blank" rel="noopener noreferrer" class="btn red">Gerar pdf</a>
+    <a href="./gerarPdf?pagamento=concluido" target="_blank" rel="noopener noreferrer" class="btn red">Gerar pdf</a>
 
     <br>
     <table>
