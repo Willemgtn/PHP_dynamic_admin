@@ -81,6 +81,8 @@ if (isset($_GET['logout'])) {
                 ['permission' => '1', 'type' => 'link', 'link' => './clientes', 'content' => 'Clientes Gestão'],
                 ['permission' => '1', 'type' => 'link', 'link' => './clientesFinanceiro', 'content' => 'Clientes Financeiro'],
                 ['permission' => '1', 'type' => 'link', 'link' => './estoque', 'content' => 'Controle de estoque'],
+                ['permission' => '1', 'type' => 'link', 'link' => './empreendimentos', 'content' => 'Empreendimento'],
+                ['permission' => '1', 'type' => 'link', 'link' => './imoveis', 'content' => 'Imoveis'],
 
                 // ['permission' => '0', 'type' => 'title', 'content' => 'Gestão'],
                 // ['permission' => '0', 'type' => 'link', 'link' => '?url=listDepo', 'content' => 'Listar Depoimento'],
@@ -234,7 +236,7 @@ if (isset($_GET['logout'])) {
     Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery.zebra.dataPicker.js', 'jquery.form.js', 'ajax.js'], 'clientes', true);
     // Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js', 'cliente.js'], 'clients/add', true);
 
-    // Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery.zebra.dataPicker.js', 'jquery.form.js', 'ajax.js'], 'estoque', true);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'empreendimentos', true);
     ?>
 
     <script>
