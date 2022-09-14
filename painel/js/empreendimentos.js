@@ -23,5 +23,9 @@ $(function () {
         console.log(data);
       });
     },
+    stop: function () {
+      var el = $(this);
+      el.find("div.boxes").css("border", "1px solid black");
+    },
   });
 });
