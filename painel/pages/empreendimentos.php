@@ -1,4 +1,6 @@
 <?php
+UsersMod::verifyPermission(1);
+
 $pageTable = 'tb_admin.empreendimentos';
 $pageTableImg = 'tb_admin.empreendimentos_imagens';
 function pageUrl($next = null)
@@ -10,10 +12,14 @@ function pageUrl($next = null)
 }
 $maxItemsPerPage = 6;
 
+
 ?>
 
 <?php // if (isset($_GET['add'])) {
 ?>
+
+<!-- Addicionar Empreendimentos -->
+
 <section id="" class="new-form">
     <h2>
         <i class="fa-solid fa-plus"></i>
@@ -72,6 +78,8 @@ $maxItemsPerPage = 6;
 <?php // } 
 ?>
 
+<!-- Listar Empreendimentos -->
+
 <section id="" class="">
     <h3>
         <i class="fa-solid fa-address-card"></i>
@@ -126,7 +134,7 @@ $maxItemsPerPage = 6;
     }
     $searchQuery = $searchQuery ?? null;
     // -----> SQL <-----
-    $empreendimentos = Sql::connect()->prepare("SELECT * from `$pageTable`  $searchQuery");
+    $empreendimentos = Sql::connect()->prepare("SELECT * from `$pageTable`  $searchQuery ORDER BY order_id ASC");
     $empreendimentos->execute();
     $empreendimentos = $empreendimentos->fetchAll();
     // 
@@ -146,7 +154,7 @@ $maxItemsPerPage = 6;
         foreach ($empreendimentos as $value) {
         ?>
 
-            <div class="roundedBorders">
+            <div class="boxes" id="item_<?php echo $value['id'] ?>">
                 <?php
                 // $sql = Sql::connect()->prepare("SELECT imagem FROM `$pageTableImg` WHERE produto_id = $value[id]");
                 // $sql->execute();
@@ -188,3 +196,5 @@ $maxItemsPerPage = 6;
 
     </div>
 </section>
+
+<link rel="stylesheet" href="./css/jquery-ui.min.css">

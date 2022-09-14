@@ -7,6 +7,9 @@ if (!Painel::logado()) {
     $data = ['success' => false, 'error' => 'You must be logged in'];
     die(json_encode($data));
 }
+
+UsersMod::verifyPermission(1);
+
 // echo "<hr><pre><p>Post:</p>";
 // print_r($_POST);
 // echo "</pre><hr>";

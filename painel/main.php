@@ -236,7 +236,7 @@ if (isset($_GET['logout'])) {
     Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery.zebra.dataPicker.js', 'jquery.form.js', 'ajax.js'], 'clientes', true);
     // Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js', 'cliente.js'], 'clients/add', true);
 
-    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'empreendimentos', true);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery-ui.min.js', 'empreendimentos.js'], 'empreendimentos', true);
     ?>
 
     <script>
