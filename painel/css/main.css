@@ -229,6 +229,9 @@ a.btn.red {
 a.btn.edit {
   background: orange;
 }
+a.btn.blue {
+  background: lightseagreen;
+}
 /* Anchors / LINKS / BUTTONS DECORATION */
 .cardsWrapper {
   display: flex;

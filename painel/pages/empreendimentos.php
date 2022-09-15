@@ -197,48 +197,7 @@ $maxItemsPerPage = 6;
     </section>
 <?php  }
 ?>
-<!-- Editar Empreendimento -->
-<?php if (isset($_GET['view'])) {
-    $edit = (int)$_GET['view'];
 
-
-?>
-    <section id="" class="new-form">
-        <h2>
-            <i class="fa-solid fa-pencil"></i>
-            Visuar imoveis do Empreendimento
-        </h2>
-        <?php
-
-
-        // Product SQL QUERY
-        $empreendimento = Sql::connect()->query("SELECT * FROM `$pageTable` WHERE id = $edit");
-        $empreendimento = $empreendimento->fetch();
-        // Image SQL QUERY
-        // $productInfoImg = Sql::connect()->query("SELECT * FROM `$pageTableImg` WHERE produto_id = $edit");
-        // $productInfoImg = $productInfoImg->fetchAll(PDO::FETCH_ASSOC);
-        ?>
-
-        <div class="productInfoImg">
-            <div style="height: 100%; padding: 8px">
-                <div>head</div>
-                <hr>
-                <?php
-                echo "<img src='./uploads/$empreendimento[imagem]'>";
-                ?>
-            </div>
-            <div style="flex-grow:1; text-align: left; padding: 8px;">
-                <div>head</div>
-                <hr>
-                <p>Nome: <?php echo $empreendimento['nome'] ?></p>
-                <hr>
-                <p>Tipo: <?php echo $empreendimento['tipo'] ?></p>
-                <hr>
-            </div>
-        </div>
-    </section>
-<?php  }
-?>
 <!-- Listar Empreendimentos -->
 
 <section id="" class="">
@@ -348,7 +307,7 @@ $maxItemsPerPage = 6;
                     <hr style="margin:5px -10px;">
                     <div class="d-flex" style="margin:10px 0;">
                         <a class="btn edit" href="<?php echo pageUrl('?edit=' . $value['id']) ?>">edit</a>
-                        <a class="btn blue" href="<?php echo pageUrl('?view=' . $value['id']) ?>">view</a>
+                        <a class="btn blue" href="<?php echo './imoveis?view=' . $value['id'] ?>">view</a>
                         <a class="btn red delete" href="<?php echo pageUrl('?delete=' . $value['id']) ?>" item_id="<?php echo $value['id'] ?>">delete</a>
                     </div>
                 </ul>

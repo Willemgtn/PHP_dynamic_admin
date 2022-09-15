@@ -192,6 +192,11 @@ if (isset($_GET['logout'])) {
 
 
         <?php
+        echo '<hr> GET: ';
+        print_r($_GET);
+        echo '<hr> POST:';
+        print_r($_POST);
+        echo '<hr>';
         if (isset($_GET["url"])) {
             if (!ctype_alpha($_GET['url'])) {
                 die('Alpha only; Incidend will be reported!!');
@@ -207,12 +212,6 @@ if (isset($_GET['logout'])) {
             include('./pages/section-viewMetrics.php');
             include('./pages/section-users.php');
         }
-        echo '<hr> GET: ';
-        print_r($_GET);
-        echo '<hr> POST:';
-        print_r($_POST);
-        echo '<hr>';
-
         ?>
 
 
@@ -237,6 +236,7 @@ if (isset($_GET['logout'])) {
     // Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js', 'cliente.js'], 'clients/add', true);
 
     Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery-ui.min.js', 'empreendimentos.js'], 'empreendimentos', true);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'imoveis', true);
     ?>
 
     <script>
