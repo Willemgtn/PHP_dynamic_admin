@@ -236,6 +236,16 @@ $maxItemsPerPage = 6;
             if ($empreendimento->rowCount() == 1) {
                 $value = $empreendimento->fetch();
                 @unlink('./uploads/' . $value['imagem']);
+
+                $imoveis = SQL::connect()->query("SELECT * FROM `tb_admin.imoveis` WHERE empreendimento_id = $delete");
+                foreach ($imoveis as $key => $value0) {
+                    $imovelImagens = SQL::connect()->query("SELECT * FROM `tb_admin.imoveis_imagens` WHERE imovel_id = $value0[id]");
+                    foreach ($imovelImagens as $value1) {
+                        @unlink('./uploads/' . $value1['imagem']);
+                    }
+                    Sql::connect()->exec("DELETE FROM `tb_admin.imoveis_imagens` WHERE imovel_id = $value0[id]");
+                }
+                Sql::connect()->exec("DELETE FROM `tb_admin.imoveis` WHERE empreendimento_id = $delete");
                 $empreendimento = Sql::connect()->prepare("DELETE FROM `$pageTable` WHERE id = ?");
                 $empreendimento->execute([$delete]);
                 Painel::htmlPopUp('ok', 'empreendimento and image were deleted.');
