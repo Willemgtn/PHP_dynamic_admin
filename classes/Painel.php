@@ -30,7 +30,8 @@ class Painel
             if (file_exists('pages/' . $url[0] . '.php')) {
                 include('pages/' . $url[0] . '.php');
             } else {
-                include('pages/home.php');
+                // include('pages/home.php');
+                header('Location: ./');
             }
         }
     }
@@ -82,6 +83,9 @@ class Painel
                 break;
             case 'error':
                 $icon = '<i class="fa-solid fa-xmark"></i> ';
+                break;
+            case 'warn':
+                $icon = '<i class="fa-solid fa-triangle-exclamation"></i> ';
                 break;
 
             default:

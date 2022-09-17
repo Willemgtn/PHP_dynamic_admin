@@ -221,7 +221,8 @@ $maxItemsPerPage = 6;
             }
             ?>
         </div>
-        <form class="" action="" method="post" enctype="multipart/form-data" resetar>
+
+        <form class="" action="./estoque?edit=<?php echo $productInfo['id'] ?>" method="post" enctype="multipart/form-data" resetar>
             <label for="nome">Nome do produto:</label>
             <input type="text" name="nome" id="" placeholder="Nome do produto" value="<?php echo $productInfo['nome'] ?>">
             <label for="descricao">Descrição do produto:</label>
