@@ -12,7 +12,7 @@
     $(function() {
         $('header.pageHeader nav i').click(function() {
             var menuIcon = $('header.pageHeader nav .menu-btn i')
-            var listaMenu = $('header.pageHeader nav ul')
+            var listaMenu = $('header.pageHeader nav>ul')
             if (listaMenu.is(':hidden') == true) {
                 // listaMenu.fadeIn();
                 listaMenu.slideToggle();

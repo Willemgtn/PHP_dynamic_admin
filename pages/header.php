@@ -20,6 +20,40 @@
         section.banner-principal {
             background-image: url('./img/Landscape_mountain.jpg');
         }
+
+        div.dropdown_menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        ul.dropdown_content {
+            display: none;
+            position: absolute;
+            background-color: #3D437ABA;
+            /* opacity: 0.5; */
+            /* min-width: 160px; */
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            /* padding: 12px 0; */
+            z-index: 2;
+        }
+
+        .dropdown_menu:hover ul.dropdown_content,
+
+        .dropdown_menu:focus ul.dropdown_content
+
+        /* .dropdown_menu:active ul.dropdown_content */
+            {
+            display: block;
+        }
+
+        ul.dropdown_content li {
+            padding: 12px 18px;
+        }
+
+        header.pageheader nav ul li span {
+            /* padding: 1em 0px; */
+            display: block;
+        }
     </style>
 </head>
 
@@ -33,12 +67,19 @@
                     <i class="fa-solid fa-bars"></i>
                 </div>
                 <ul>
-                    <li><a href="./">Home</a></li>
-                    <li><a href="./sobre">Sobre</a></li>
-                    <li><a href="./#servicos">Serviços</a></li>
-                    <li><a href="./#sobre">Sobre</a></li>
-                    <li><a href="./contact">Contatos</a></li>
-                    <li><a href="./painel/">Admin</a></li>
+                    <li class="dropdown_menu">
+                        <span><a href="#">Home</a></span>
+
+                        <ul class="dropdown_content">
+                            <li><a href="./">Home</a></li>
+                            <li><a href="./#sobre">Sobre</a></li>
+                            <li><a href="./#servicos">Serviços</a></li>
+                            <li><a href="./#sobre">Sobre</a></li>
+                            <li><a href="./contact">Contatos</a></li>
+                            <li><a href="./painel/">Admin</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./imoveis">Imoveis</a></li>
                 </ul>
 
             </nav>
