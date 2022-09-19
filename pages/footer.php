@@ -33,6 +33,10 @@
 <!-- <script src="./js/slider.js"></script> -->
 <script src="./js/animarEspecialidades.js"></script>
 <script src="./js/ajaxForm.js"></script>
+<?php
+
+Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'imoveis', true);
+?>
 </body>
 
 </html>

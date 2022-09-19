@@ -17,7 +17,7 @@ class homeController
 
         if (isset($_GET["url"])) {
             if (!ctype_alpha($_GET['url'])) {
-                die('Alpha only Insidend will be reported!');
+                // die('Alpha only Insidend will be reported!');
             }
             if (file_exists("./pages/" . $_GET["url"] . ".html")) {
                 include("./pages/" . $_GET["url"] . ".html");

@@ -48,9 +48,12 @@ if (isset($_GET['view'])) {
             if (isset($_POST['submit'])) {
                 $nome = $_POST['nome'];
                 $empre_id = $_POST['empreendimento'];
+                // $preco = number_format($_POST['preco'], 2, '.', ',');
                 $preco = $_POST['preco'];
                 $area = $_POST['area'];
-                // $imagens = $_FILES['img'];
+
+                $preco = str_replace('.', '', $preco);
+                $preco = str_replace(',', '.', $preco);
 
                 // $images;
                 if ($_FILES['img']['name'][0] != '') {
@@ -86,9 +89,10 @@ if (isset($_GET['view'])) {
                         // print_r($imagens);
                         // echo "</pre>";
 
+                        $lastId = Sql::connect()->lastInsertId();
 
                         foreach ($imagens as $key => $value) {
-                            Sql::connect()->exec("INSERT INTO `$pageTableImg` VALUES (null,$view,'$value[upload_name]')");
+                            Sql::connect()->exec("INSERT INTO `$pageTableImg` VALUES (null,$lastId,'$value[upload_name]')");
                         }
                         Painel::htmlPopUp('ok', 'Produto foi Atualizado');
                     } else {
@@ -145,7 +149,9 @@ if (isset($_GET['view'])) {
                 $empre_id = $_POST['empreendimento'];
                 $preco = $_POST['preco'];
                 $area = $_POST['area'];
-                // $imagens = $_FILES['img'];
+
+                $preço = str_replace('.', '', $preco);
+                $preço = str_replace(',', '.', $preco);
 
                 // echo "<pre>";
                 // print_r($_POST);
@@ -281,14 +287,20 @@ if (isset($_GET['view'])) {
             if (is_int(intval($_GET['delete']))) {
                 $imovel = Sql::connect()->prepare("SELECT id FROM `$pageTable` WHERE id = ?");
                 $imovel->execute([$delete]);
+                // print_r($imovel);
+                // echo "<br>";
                 // echo $product->rowCount();
                 if ($imovel->rowCount() == 1) {
                     // product exists, proceed to delete it.
                     $imovelImages = Sql::connect()->prepare("SELECT imagem FROM `$pageTableImg` WHERE imovel_id = ?");
                     $imovelImages->execute([$delete]);
+                    // $imovelImages->debugDumpParams();
+                    // echo "<br>";
                     $imovelImages = $imovelImages->fetchAll();
+                    // print_r($imovelImages);
+                    // echo "<br>";
                     foreach ($imovelImages as $key => $value) {
-                        // echo "<img src='./uploads/$value[imagem]'>";
+                        echo "<img src='./uploads/$value[imagem]'>";
                         @unlink('./uploads/' . $value['imagem']);
                     }
 
@@ -350,7 +362,7 @@ if (isset($_GET['view'])) {
                     foreach ($imoveis as $key => $value) {
                         echo '<tr>';
                         echo "<td> $value[nome] </td>";
-                        echo "<td> R$ $value[preco] </td>";
+                        echo "<td> R$ " . number_format($value['preco'], 2, '.', ',') . "</td>";
                         echo "<td> $value[area] M² </td>";
                         echo "<td> <a class='btn edit' href='./imoveis?view=$view&edit=$value[id]'>Edit</a> <a confirm class='btn red' href='./imoveis?view=$view&delete=$value[id]'>delete</a> </td>";
                         echo '</tr>';
