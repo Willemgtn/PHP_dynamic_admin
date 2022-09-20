@@ -22,7 +22,31 @@
             </section>
         </section>
         <section class="main">
-            <h2>main</h2>
+            <!-- LISTAR IMOVEIS -->
+            <p>
+                Listando
+                <strong>100</strong>
+                Imoveis
+            </p>
+            <hr>
+            <?php for ($i = 0; $i < 5; $i++) { ?>
+                <div class="imoveis_wrapper">
+                    <div>
+                        <img src="./painel/uploads/62ee0ef454c83.jpeg" alt="">
+                        <table>
+                            <tr>
+                                <td>Nome do Imovel: 01</td>
+                            </tr>
+                            <tr>
+                                <td>Area:</td>
+                            </tr>
+                            <tr>
+                                <td>Preço:</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            <?php } ?>
         </section>
     </div>
 </main>
@@ -59,5 +83,40 @@
 
     section.main {
         margin: 8px;
+        flex-grow: 1;
+    }
+
+    div.imoveis_wrapper {}
+
+    div.imoveis_wrapper>div {
+
+        display: flex;
+        margin: 20px 0;
+        /* padding: 20px; */
+        /* width: 100%; */
+    }
+
+    div.imoveis_wrapper>div>img {
+        width: 200px;
+    }
+
+    div.imoveis_wrapper>div>table {
+        background-color: #999;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        width: 100%;
+        padding-left: 32px;
+    }
+
+    div.imoveis_wrapper>div>table>tbody>tr>td {
+        border-bottom: 1px solid black;
+    }
+
+    div.imoveis_wrapper>div>table>tbody>tr:last-child>td {
+        border-bottom: none;
+    }
+
+    div.imoveis_wrapper>div>table>tbody:not(tr>:last-child) {
+        border-bottom: 1px solid pink;
     }
 </style>
