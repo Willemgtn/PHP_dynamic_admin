@@ -1,3 +1,14 @@
+<?php
+$pageTable = 'tb_admin.imoveis';
+$pageTableImg = 'tb_admin.imoveis_imagens';
+function pageUrl($next = null)
+{
+    $baseUrl = './imoveis';
+    return $next ? $baseUrl . $next : $baseUrl;
+}
+$maxItemsPerPage = 6;
+?>
+
 <main class="imoveis">
     <div class="center">
         <section class="search">
@@ -29,19 +40,33 @@
                 Imoveis
             </p>
             <hr>
-            <?php for ($i = 0; $i < 5; $i++) { ?>
+            <?php
+            echo "<hr><pre>";
+            // print_r(\models\imoveisModel::getEmpreendimentos());
+            // print_r(\models\imoveisModel::getImoveisById(1));
+            print_r(\models\imoveisModel::getImoveisImagens(1));
+            echo "<hr></pre>";
+
+            for ($i = 0; $i < 5; $i++) { ?>
                 <div class="imoveis_wrapper">
                     <div>
                         <img src="./painel/uploads/62ee0ef454c83.jpeg" alt="">
+                        <img src="./painel/uploads/<?php echo @$value['imagens'][0]['imagem'] ?>">
                         <table>
                             <tr>
-                                <td>Nome do Imovel: 01</td>
+                                <td>Nome do Imovel:
+                                    <?php echo @$value['nome'] ?>
+                                </td>
                             </tr>
                             <tr>
-                                <td>Area:</td>
+                                <td>Area:
+                                    <?php echo @$value['area'] ?>
+                                </td>
                             </tr>
                             <tr>
-                                <td>Preço:</td>
+                                <td>Preço:
+                                    <?php echo @$value['preco'] ?>
+                                </td>
                             </tr>
                         </table>
                     </div>
