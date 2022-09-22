@@ -42,16 +42,16 @@ $maxItemsPerPage = 6;
             <hr>
             <?php
             echo "<hr><pre>";
-            // print_r(\models\imoveisModel::getEmpreendimentos());
-            // print_r(\models\imoveisModel::getImoveisById(1));
-            print_r(\models\imoveisModel::getImoveisImagens(1));
+            // print_r(\models\imoveisModel::getAllEmpreendimentos());
+            // print_r(\models\imoveisModel::getImovelById(1));
+            print_r(\models\imoveisModel::getImovelImagens(1));
             echo "<hr></pre>";
 
             for ($i = 0; $i < 5; $i++) { ?>
                 <div class="imoveis_wrapper">
                     <div>
                         <img src="./painel/uploads/62ee0ef454c83.jpeg" alt="">
-                        <img src="./painel/uploads/<?php echo @$value['imagens'][0]['imagem'] ?>">
+                        <!-- <img src="./painel/uploads/<?php echo @$value['imagens'][0]['imagem'] ?>"> -->
                         <table>
                             <tr>
                                 <td>Nome do Imovel:
