@@ -44,10 +44,19 @@ $maxItemsPerPage = 6;
             echo "<hr><pre>";
             // print_r(\models\imoveisModel::getAllEmpreendimentos());
             // print_r(\models\imoveisModel::getImovelById(1));
-            print_r(\models\imoveisModel::getImovelImagens(1));
+            // print_r(\models\imoveisModel::getImovelImagens(1));
             echo "<hr></pre>";
 
-            for ($i = 0; $i < 5; $i++) { ?>
+            $empreendimentos = \models\imoveisModel::getAllEmpreendimentos();
+            foreach ($empreendimentos as $key => $value) {
+                $imoveis[] = \models\imoveisModel::getImoveisByEmpreendimento($value['id']);
+            }
+            echo "<hr><pre>";
+            print_r($imoveis);
+            echo "<hr></pre>";
+            foreach ($imoveis[0] as $key => $value) {
+                # code...
+            ?>
                 <div class="imoveis_wrapper">
                     <div>
                         <img src="./painel/uploads/62ee0ef454c83.jpeg" alt="">
@@ -64,8 +73,8 @@ $maxItemsPerPage = 6;
                                 </td>
                             </tr>
                             <tr>
-                                <td>Preço:
-                                    <?php echo @$value['preco'] ?>
+                                <td>Preço: R$
+                                    <?php echo number_format(@$value['preco'], 2, ',', '.'); ?>
                                 </td>
                             </tr>
                         </table>
