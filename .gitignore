@@ -1,15 +1,16 @@
-config.php
+#config.php
 fontawesome/
 bootstrap-5.2.0/
 
 js/tinymce/
 
 painel/pages/old/
-painel/uploads/
+painel/uploads/*
 
 painel/vendor/*/
 #Except vender/composer
 !painel/vendor/composer/
+
 
 classes/*/
 # classes/Facebook/
@@ -19,3 +20,5 @@ classes/*/
 # classes/PHPMailer/
 # classes/Psr/
 # classes/Wideimage/
+
+backup/*

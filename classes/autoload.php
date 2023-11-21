@@ -36,6 +36,8 @@ spl_autoload_register(function ($class) {
         require($baseDir . '../' . $file);
     } else if (file_exists($baseDir . '../../' . $file)) {
         require($baseDir . '../../' . $file);
+    } else if (file_exists($baseDir . '../mvc/' . $file)) {
+        require($baseDir . '../mvc/' . $file);
     } else {
         // echo "<hr> File could not be found:  $baseDir $relativeClass.php <hr>";
         if ($debug) {

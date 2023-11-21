@@ -1,6 +1,9 @@
 <?php
 ob_start();
 include('config.php');
+print_r($_SESSION);
+
+// echo(__DIR__);
 
 // include('classes/autoload.php');
 ViewMetrics::updateOnlineUser();
