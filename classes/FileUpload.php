@@ -2,7 +2,8 @@
 // Uniqueid() and file_exists can conflict as the validadeImage hasn't got the uniqueid() as well
 class FileUpload
 {
-    static $target_dir = "/var/www/html/danki/dev1.0/projeto/painel/uploads/";
+    static $target_dir = "C:\\xampp\\htdocs\\PHP_Web_dev\\painel\\uploads\\";
+    // static $target_dir = "/var/www/html/danki/dev1.0/projeto/painel/uploads/";
 
     static function validadeImage($fileInputName, $debug = false)
     {

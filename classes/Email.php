@@ -4,14 +4,14 @@
 
 
     use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-    use PHPMailer\PHPMailer\SMTP;
+    // use PHPMailer\PHPMailer\Exception;
+    // use PHPMailer\PHPMailer\SMTP;
     // require_once 'PHPMailer/src/PhpMailer.php';
     // require getcwd().'/classes/PHPMailer/src/PhpMailer.php';
     
-    require_once '../classes/PHPMailer/src/PHPMailer.php';
-    require_once '../classes/PHPMailer/src/Exception.php';
-    require_once '../classes/PHPMailer/src/SMTP.php';
+    // require_once '../classes/PHPMailer/src/PHPMailer.php';
+    // require_once '../classes/PHPMailer/src/Exception.php';
+    // require_once '../classes/PHPMailer/src/SMTP.php';
     
 
     class Email {

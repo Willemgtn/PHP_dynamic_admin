@@ -85,6 +85,7 @@
 
     ?>
     <div class="box-login">
+        <a href="../">Voltar</a>
         <h2>Area de login</h2>
 
         <form method="post" action="">

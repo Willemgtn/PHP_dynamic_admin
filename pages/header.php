@@ -68,7 +68,7 @@
                 </div>
                 <ul>
                     <li class="dropdown_menu">
-                        <span><a href="#">Home</a></span>
+                        <span><a href="./">Home</a></span>
 
                         <ul class="dropdown_content">
                             <li><a href="./">Home</a></li>
