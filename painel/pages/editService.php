@@ -24,8 +24,8 @@ function pageUrl($next = null)
         <form action="" method="post" enctype="multipart/form-data">
 
             <div class="d-flex">
-                <label for="content">Service Description:</label>
-                <textarea class="tiny" type="text" name="content" value=""></textarea>
+                <label for="conteudo">Service Description:</label>
+                <textarea class="tiny" type="text" name="conteudo" value=""></textarea>
             </div>
 
 
@@ -157,7 +157,7 @@ if (isset($_GET['edit'])) {
 
             <div class="d-flex">
                 <label for="service">Service Description:</label>
-                <textarea type="text" name="service"><?php echo $sql['service'] ?></textarea>
+                <textarea class="tiny" type="text" name="service"><?php echo $sql['service'] ?></textarea>
             </div>
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2023 at 11:05 PM
+-- Generation Time: Nov 22, 2023 at 11:50 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,8 +41,8 @@ CREATE TABLE `tb_admin.clientes` (
 --
 
 INSERT INTO `tb_admin.clientes` (`id`, `nome`, `email`, `tipo`, `inscricao`, `imagem`) VALUES
-(1, 'WimFin', 'email@gmail.com', 'fisico', '000.000.000-00', NULL),
-(2, 'WimFin', 'email@gmail.com', 'juridico', '00.000.000/0-00', NULL);
+(1, 'WimFin', 'e-mail@gmail.com', 'fisico', '000.000.000-00', NULL),
+(2, 'WimFin', 'e-mail@gmail.com', 'juridico', '00.000.000/0-00', NULL);
 
 -- --------------------------------------------------------
 
@@ -200,7 +200,11 @@ INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
 (1, '::1', '2023-11-17 16:03:17', 655780),
 (2, '::1', '2023-11-17 16:05:41', 65578145),
 (3, '::1', '2023-11-22 15:39:20', 655),
-(4, '::1', '2023-11-22 21:48:58', 2147483647);
+(316, '::1', '2023-11-22 15:39:20', 655),
+(317, '::1', '2023-11-22 15:39:20', 655),
+(318, '::1', '2023-11-22 15:39:20', 655),
+(319, '::1', '2023-11-22 15:39:20', 655),
+(320, '::1', '2023-11-22 21:48:58', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -257,8 +261,19 @@ INSERT INTO `tb_admin.visits` (`id`, `ip`, `day`) VALUES
 
 CREATE TABLE `tb_site.depoimentos` (
   `id` int(11) NOT NULL,
+  `autor` varchar(255) NOT NULL,
+  `conteudo` text NOT NULL,
+  `date` date NOT NULL,
   `order_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_site.depoimentos`
+--
+
+INSERT INTO `tb_site.depoimentos` (`id`, `autor`, `conteudo`, `date`, `order_id`) VALUES
+(1, 'Depoimento 1', '<p>depoimento simples</p>', '2023-11-22', 1),
+(2, 'Depoimento 1', '<p>depoimento simples</p>', '2023-11-22', 1);
 
 -- --------------------------------------------------------
 
@@ -291,8 +306,17 @@ INSERT INTO `tb_site.home` (`id`, `pagetitle`, `pagedescription`, `logotitle`, `
 
 CREATE TABLE `tb_site.service` (
   `id` int(11) NOT NULL,
+  `service` text NOT NULL,
   `order_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_site.service`
+--
+
+INSERT INTO `tb_site.service` (`id`, `service`, `order_id`) VALUES
+(1, '<p>servi&ccedil;o 1</p>', 1),
+(2, '<p>serviço 2</p>', 1);
 
 -- --------------------------------------------------------
 
@@ -453,7 +477,7 @@ ALTER TABLE `tb_admin.imoveis_imagens`
 -- AUTO_INCREMENT for table `tb_admin.online`
 --
 ALTER TABLE `tb_admin.online`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
 
 --
 -- AUTO_INCREMENT for table `tb_admin.users`
@@ -471,7 +495,7 @@ ALTER TABLE `tb_admin.visits`
 -- AUTO_INCREMENT for table `tb_site.depoimentos`
 --
 ALTER TABLE `tb_site.depoimentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_site.home`
@@ -483,7 +507,7 @@ ALTER TABLE `tb_site.home`
 -- AUTO_INCREMENT for table `tb_site.service`
 --
 ALTER TABLE `tb_site.service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_site.slide`

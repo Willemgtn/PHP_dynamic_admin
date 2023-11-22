@@ -34,8 +34,8 @@ $maxItemsPerPage = 6;
             </div>
 
             <div class="d-flex">
-                <label for="depo">Testimony:</label>
-                <textarea class="tiny" type="text" name="depo" value=""></textarea>
+                <label for="conteudo">Testimony:</label>
+                <textarea class="tiny" type="text" name="conteudo" value=""></textarea>
             </div>
 
             <div class="d-flex">
@@ -169,7 +169,7 @@ if (isset($_GET['edit'])) {
             </div>
 
             <div class="d-flex">
-                <label for="depo">Testimony:</label>
+                <label for="conteudo">Testimony:</label>
                 <textarea type="text" name="conteudo"><?php echo $sql['conteudo'] ?></textarea>
             </div>
 

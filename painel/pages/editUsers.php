@@ -10,7 +10,7 @@ function pageUrl($next = null)
 
 <?php if (isset($_GET['add'])) { ?>
 
-    <section class="">
+    <section class="new-form">
         <?php
         if (isset($_POST["addUser"])) {
             if (strlen($_POST['user']) < 6 && UsersMod::userExists($_POST['user'])) {
@@ -39,7 +39,7 @@ function pageUrl($next = null)
             Add User
 
         </h2>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form class="" action="" method="post" enctype="multipart/form-data">
 
             <div class="d-flex">
                 <label for="name">Name:</label>
@@ -56,6 +56,7 @@ function pageUrl($next = null)
                 <input type="password" name="password" id="" value="">
             </div>
             <div class="d-flex">
+                <label for="role">Função:</label>
                 <select name="role" id="">
                     <?php
                     foreach (UsersMod::$nameRole as $key => $value) {
@@ -137,7 +138,7 @@ if (isset($_GET['edit'])) {
     // foreach ($sql as $key => $value) {  
     // SQL::connect() -> execute("SELECT id FROM `$pageTable` ORDER BY id DESC LIMIT 1") -> fetch()['id']
 ?>
-    <section>
+    <section class="new-form">
         <?php
         if (isset($_POST['submit'])) {
             if (strlen($_POST['user']) < 6 && UsersMod::userExists($_POST['user'])) {
