@@ -1,7 +1,7 @@
 <?php
 ob_start();
 include('config.php');
-print_r($_SESSION);
+
 
 // echo(__DIR__);
 

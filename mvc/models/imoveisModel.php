@@ -49,7 +49,7 @@ class imoveisModel
 
         // $sql = \Sql::connect()->query("SELECT * FROM `$tableImoveis` WHERE id = $imovelId")->fetch(\PDO::FETCH_ASSOC);
         $sql = self::getImovelById($imovelId);
-        $sql['imagens'] = \Sql::connect()->query("SELECT * FROM `$tableImoveisImagens` WHERE imovel_id = $imovelId")->fetchAll(\PDO::FETCH_ASSOC);
+        $sql['imagens'] = \Sql::connect()->query("SELECT imagem FROM `$tableImoveisImagens` WHERE imovel_id = $imovelId")->fetchAll(\PDO::FETCH_ASSOC);
         return $sql;
     }
 }

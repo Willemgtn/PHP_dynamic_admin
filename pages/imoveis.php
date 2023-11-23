@@ -38,43 +38,67 @@ $maxItemsPerPage = 6;
                 Listando
                 <strong>100</strong>
                 Imoveis
-            </p>
+            </p>           
+
             <hr>
             <?php
-            echo "<hr><pre>";
-            // print_r(\models\imoveisModel::getAllEmpreendimentos());
-            // print_r(\models\imoveisModel::getImovelById(1));
-            // print_r(\models\imoveisModel::getImovelImagens(1));
-            echo "<hr></pre>";
+            if (1 == 0 ){
+                echo "<hr><pre>";
+                print_r(\models\imoveisModel::getAllEmpreendimentos());
+                // print_r(\models\imoveisModel::getImovelById(3));
+                print_r(\models\imoveisModel::getImovelImagens(3));
+                echo "<hr></pre>";
+            }
+            
 
             $empreendimentos = \models\imoveisModel::getAllEmpreendimentos();
             foreach ($empreendimentos as $key => $value) {
                 $imoveis[] = \models\imoveisModel::getImoveisByEmpreendimento($value['id']);
             }
-            echo "<hr><pre>";
-            print_r($imoveis);
-            echo "<hr></pre>";
+            // echo "<hr><pre>";
+            // print_r($imoveis);
+            // echo "<hr></pre>";
             foreach ($imoveis[0] as $key => $value) {
                 # code...
+                $imovel = \models\imoveisModel::getImovelImagens($value['id']);
+                $imovel_imagens = $imovel['imagens'];
             ?>
-                <div class="imoveis_wrapper">
+                <div class="imoveis_wrapper">  
                     <div>
-                        <img src="./painel/uploads/62ee0ef454c83.jpeg" alt="">
-                        <!-- <img src="./painel/uploads/<?php echo @$value['imagens'][0]['imagem'] ?>"> -->
+                        <div id="imovel_id_<?php echo $imovel['id']?>" class="img carousel slide carousel-fade" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                        <?php 
+                          // print_r($imovel_imagens);
+                            foreach($imovel_imagens as $key => $value){
+                              $active = $key == array_key_first($imovel_imagens) ? ' active' : '' ;
+                                echo '<div class="carousel-item'.$active.'"> <img src="./painel/uploads/' . $value['imagem'] . '" class="d-block w-100 alt="..."></div>';
+                            }
+
+                        ?>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#imovel_id_<?php echo $imovel['id']?>" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                         </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#imovel_id_<?php echo $imovel['id']?>" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                            </div>
+                        </div>
                         <table>
                             <tr>
                                 <td>Nome do Imovel:
-                                    <?php echo @$value['nome'] ?>
+                                    <?php echo @$imovel['nome'] ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Area:
-                                    <?php echo @$value['area'] ?>
+                                    <?php echo @$imovel['area'] ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Preço: R$
-                                    <?php echo number_format(@$value['preco'], 2, ',', '.'); ?>
+                                    <?php echo number_format(@$imovel['preco'], 2, ',', '.'); ?>
                                 </td>
                             </tr>
                         </table>
@@ -130,7 +154,10 @@ $maxItemsPerPage = 6;
         /* width: 100%; */
     }
 
-    div.imoveis_wrapper>div>img {
+    div.imoveis_wrapper>div>div.img {
+        width: 200px;
+    }
+    div.imoveis_wrapper>div>div>img {
         width: 200px;
     }
 
