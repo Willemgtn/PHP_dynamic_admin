@@ -12,7 +12,7 @@ $maxItemsPerPage = 6;
 ?>
 
 <?php if (isset($_GET['add'])) { ?>
-    <section>
+    <section class="new-form">
         <?php
 
         if (isset($_POST['submit'])) {
@@ -170,7 +170,7 @@ if (isset($_GET['edit'])) {
 
             <div class="d-flex">
                 <label for="conteudo">Testimony:</label>
-                <textarea type="text" name="conteudo"><?php echo $sql['conteudo'] ?></textarea>
+                <textarea class="tiny" type="text" name="conteudo"><?php echo $sql['conteudo'] ?></textarea>
             </div>
 
             <div class="d-flex">

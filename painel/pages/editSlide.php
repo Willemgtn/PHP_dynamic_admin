@@ -9,7 +9,7 @@ function pageUrl($next = null)
 }
 ?>
 <?php if (isset($_GET['add'])) { ?>
-    <section class="">
+    <section class="new-form">
 
         <?php
         UsersMod::verifyPermission(2);
@@ -228,7 +228,7 @@ if (isset($_GET['edit'])) {
     // foreach ($sql as $key => $value) {  
     // SQL::connect() -> execute("SELECT id FROM `$pageTable` ORDER BY id DESC LIMIT 1") -> fetch()['id']
 ?>
-    <section>
+    <section class="new-form">
         <h2>
             <i class="fa-solid fa-images"></i>
             Edit Photo

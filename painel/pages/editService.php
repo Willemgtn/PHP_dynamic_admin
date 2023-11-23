@@ -48,7 +48,7 @@ function pageUrl($next = null)
 <?php } ?>
 
 
-<section>
+<section class="new-form">
     <?php
     if (isset($_GET['delete'])) {
         if (DButils::deleteWhereId($pageTable, $_GET['delete'])) {
@@ -91,12 +91,12 @@ function pageUrl($next = null)
         ?>
             <div class="">
 
-                <p><?php echo $value['service'] ?></p>
-                <div class="min-flex f-space mob-btn">
+                <div><?php echo $value['service'] ?></div>
+                <div class="f-space mob-btn">
                     <a class="edit-btn" href="<?php echo pageUrl('?edit=' . $value['id']) ?>"><i class="fa-solid fa-pencil"></i>Edit</a>
                     <a class="delete-btn" actionBtn="delete" href="<?php echo pageUrl('?delete=' . $value['id']) ?>"><i class="fa-solid fa-xmark"></i>Delete</a>
                 </div>
-                <div class="min-flex f-space  mob-btn">
+                <div class="f-space  mob-btn">
                     <a href="<?php echo pageUrl('?order=down&id=' . $value['id']) ?>"><i class="fa-solid fa-angle-down"></i></a>
                     <a href="<?php echo pageUrl('?order=up&id=' . $value['id']) ?>"><i class="fa-solid fa-angle-up"></i></a>
                 </div>
