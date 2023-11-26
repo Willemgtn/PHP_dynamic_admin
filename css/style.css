@@ -33,10 +33,11 @@
     float: right;
 }
 
+
 /* Estilização do site */
 
 header {
-    background-color: #3D437A;
+    background-color: #1e547a;
     padding: 10px 0;
 }
 
@@ -66,7 +67,6 @@ header.pageHeader nav li a {
     text-decoration: none;
     padding: 0 30px;
     position: relative;
-
 }
 
 header.pageHeader nav li a::before {
@@ -83,7 +83,9 @@ header.pageHeader nav li a::before {
     transition: transform 1s ease;
 }
 
+
 /* https://tobiasahlin.com/blog/css-trick-animating-link-underlines/ */
+
 header.pageHeader nav li a:hover::before {
     transform: scaleX(1);
 }
@@ -100,15 +102,12 @@ header.pageHeader nav div.menu-btn {
     .w50 {
         width: 100%;
     }
-
     .w33 {
         width: 100%;
     }
-
     header.pageHeader nav li a {
         padding: 0 10px;
     }
-
     header.pageHeader nav ul {
         display: block;
     }
@@ -118,11 +117,9 @@ header.pageHeader nav div.menu-btn {
     header.pageHeader nav div.menu-btn {
         display: block;
     }
-
     header.pageHeader nav ul {
         display: none;
     }
-
     /* nav.mobile {    display: block;}
     nav.mobile ul { display: none;} */
     header.pageHeader nav .menu-btn {
@@ -131,7 +128,6 @@ header.pageHeader nav div.menu-btn {
         cursor: pointer;
         padding-right: 0.5em;
     }
-
     header.pageHeader nav ul {
         top: 50px;
         left: 0;
@@ -142,7 +138,6 @@ header.pageHeader nav div.menu-btn {
         width: 100%;
         list-style: none;
     }
-
     header.pageHeader nav li {
         font-size: 16px;
         background-color: white;
@@ -150,19 +145,19 @@ header.pageHeader nav div.menu-btn {
         font-weight: 300;
         display: block;
     }
-
     header.pageHeader nav li a {
         color: #444;
         text-decoration: none;
         display: block;
         padding: 1em 0 !important;
     }
-
     header.pageHeader nav li a::before {
         background-color: #000;
     }
 }
 
+
+/* <-------- Section --------> */
 
 section.banner-principal {
     background-color: gainsboro;
@@ -245,11 +240,8 @@ section.descricao-autor .img-placeholder {
     width: 100%;
     max-width: 300px;
     /* background-color: rgba(0, 0, 0, 0.1); */
-
     /* background-image: url('./img/default_profile.webp'); */
 }
-
-
 
 section.especialidades {
     padding: 40px 0;
@@ -322,8 +314,11 @@ section.extras .servicos li {
     font-weight: 300;
 }
 
+
+/* <-------- Footer --------> */
+
 footer {
-    background-color: #313462;
+    background-color: #1e547a;
     padding: 2em;
 }
 

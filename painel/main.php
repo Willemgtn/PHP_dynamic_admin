@@ -233,11 +233,11 @@ if (isset($_GET['logout'])) {
 
     <?php
     // Loading page specific js scripts
-    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery.zebra.dataPicker.js', 'jquery.form.js', 'ajax.js'], 'clientes', true);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery.zebra.dataPicker.js', 'jquery.form.js', 'ajax.js'], 'clientes', false);
     // Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js', 'cliente.js'], 'clients/add', true);
 
-    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery-ui.min.js', 'empreendimentos.js'], 'empreendimentos', true);
-    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'imoveis', true);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery-ui.min.js', 'empreendimentos.js'], 'empreendimentos', false);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'imoveis', false);
     ?>
 
     <script>
