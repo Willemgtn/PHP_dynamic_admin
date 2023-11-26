@@ -14,9 +14,15 @@ class imoveisModel
         $tableImoveis = self::$tableImoveis;
         $tableImoveisImagens = self::$tableImoveisImagens;
         // -----------------
-        $sql = \Sql::connect()->query("SELECT * FROM `$tableEmpreendimentos`")->fetchAll(\PDO::FETCH_ASSOC);
+        $sql = \Sql::connect()->query("SELECT * FROM `$tableEmpreendimentos` ORDER BY order_id ASC")->fetchAll(\PDO::FETCH_ASSOC);
         // $sql= $sql
         return $sql;
+    }
+    static function getAllImoveis()
+    {
+      $tableImoveis = self::$tableImoveis;
+      $sql = \Sql::connect()->query("SELECT * FROM `$tableImoveis`")->fetchAll(\PDO::FETCH_ASSOC);
+      return $sql;
     }
     static function getImoveisByEmpreendimento(?string $empreendimentoId)
     {

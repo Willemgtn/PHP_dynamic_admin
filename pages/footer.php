@@ -35,7 +35,7 @@
 <script src="./js/ajaxForm.js"></script>
 <?php
 
-Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'imoveis', true);
+Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery.zebra.dataPicker.js', 'jquery.form.js'], 'imoveis', true);
 ?>
 </body>
 

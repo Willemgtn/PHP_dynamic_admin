@@ -7,107 +7,53 @@ function pageUrl($next = null)
     return $next ? $baseUrl . $next : $baseUrl;
 }
 $maxItemsPerPage = 6;
+
+$view = new \views\imoveisView();
+$view->empreendimentos = \models\imoveisModel::getAllEmpreendimentos();
+
+if(isset($_GET['q'])){
+  $query = strip_tags(($_GET['q']));
+  $view->imoveis = \models\imoveisModel::getImoveisByEmpreendimento($query);
+  $view->q = $query;
+} else {
+  $view->imoveis = \models\imoveisModel::getAllImoveis();
+}
+// $empreendimentos = \models\imoveisModel::getAllEmpreendimentos();
+
+
 ?>
+
 
 <main class="imoveis">
     <div class="center">
-        <section class="search">
-            <section class="search1">
-                <h2>O que você procura?</h2>
-                <input type="text" name="texto_busca" id="">
-            </section>
-
-            <section class="search2">
-
-                <form action="./ajax/imoveis.php" method="post">
-                    <h2>Area minima:</h2>
-                    <input type="text" name="area-min" id="">
-                    <h2>Area maxima:</h2>
-                    <input type="text" name="area-max" id="">
-                    <h2>Preco minimo:</h2>
-                    <input type="text" name="preco-min" mask="brl">
-                    <h2>Preco maximo:</h2>
-                    <input type="text" name="preco-min" mask="brl">
-
-                </form>
-            </section>
-        </section>
-        <section class="main">
-            <!-- LISTAR IMOVEIS -->
-            <p>
-                Listando
-                <strong>100</strong>
-                Imoveis
-            </p>           
-
-            <hr>
-            <?php
-            if (1 == 0 ){
-                echo "<hr><pre>";
-                print_r(\models\imoveisModel::getAllEmpreendimentos());
-                // print_r(\models\imoveisModel::getImovelById(3));
-                print_r(\models\imoveisModel::getImovelImagens(3));
-                echo "<hr></pre>";
-            }
-            
-
-            $empreendimentos = \models\imoveisModel::getAllEmpreendimentos();
-            foreach ($empreendimentos as $key => $value) {
-                $imoveis[] = \models\imoveisModel::getImoveisByEmpreendimento($value['id']);
-            }
-            // echo "<hr><pre>";
-            // print_r($imoveis);
-            // echo "<hr></pre>";
-            foreach ($imoveis[0] as $key => $value) {
-                # code...
-                $imovel = \models\imoveisModel::getImovelImagens($value['id']);
-                $imovel_imagens = $imovel['imagens'];
-            ?>
-                <div class="imoveis_wrapper">  
-                    <div>
-                        <div id="imovel_id_<?php echo $imovel['id']?>" class="img carousel slide carousel-fade" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                        <?php 
-                          // print_r($imovel_imagens);
-                            foreach($imovel_imagens as $key => $value){
-                              $active = $key == array_key_first($imovel_imagens) ? ' active' : '' ;
-                                echo '<div class="carousel-item'.$active.'"> <img src="./painel/uploads/' . $value['imagem'] . '" class="d-block w-100 alt="..."></div>';
-                            }
-
-                        ?>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#imovel_id_<?php echo $imovel['id']?>" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#imovel_id_<?php echo $imovel['id']?>" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                            </div>
-                        </div>
-                        <table>
-                            <tr>
-                                <td>Nome do Imovel:
-                                    <?php echo @$imovel['nome'] ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Area:
-                                    <?php echo @$imovel['area'] ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Preço: R$
-                                    <?php echo number_format(@$imovel['preco'], 2, ',', '.'); ?>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            <?php } ?>
-        </section>
+        <?php 
+          $view->renderSideBar(); 
+          $view->renderImoveis();
+        
+        ?>
+       
     </div>
 </main>
+
+<script>
+  $(function(){
+    // setInterval(function(){
+    //   sendRequest();
+    // },3000);
+    $(":input").bind('keyup change input', function(){
+      sendRequest();
+    })
+
+    function sendRequest(){
+      $('form').ajaxSubmit({
+        data:{'nome_imovel' : $('input[name=texto-busca').val()},
+        success:function(data){
+          $('section.main').html(data);
+        }
+      })
+    }
+  })
+</script>
 
 <style>
     section.search {
@@ -116,7 +62,9 @@ $maxItemsPerPage = 6;
         /* margin: 4px; */
     }
 
-    section.search>section {
+    section.search>section,
+    section.search>form>section 
+    {
         display: inline-block;
         border: 1px solid black;
         border-radius: 10px;
@@ -124,7 +72,11 @@ $maxItemsPerPage = 6;
         margin: 8px 0;
     }
 
-    section.search>section input {
+    section.search>form{
+      display: contents;
+    }
+
+    section.search>form>section input {
         width: 100%;
         padding-left: 4px;
     }
@@ -162,7 +114,8 @@ $maxItemsPerPage = 6;
     }
 
     div.imoveis_wrapper>div>table {
-        background-color: #999;
+        /* background-color: #999; */
+        background-color: rgba(0, 69, 69, 0.3);
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
         width: 100%;
@@ -171,6 +124,7 @@ $maxItemsPerPage = 6;
 
     div.imoveis_wrapper>div>table>tbody>tr>td {
         border-bottom: 1px solid black;
+        padding-left: 10px;
     }
 
     div.imoveis_wrapper>div>table>tbody>tr:last-child>td {
