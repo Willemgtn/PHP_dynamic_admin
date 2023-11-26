@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2023 at 03:21 PM
+-- Generation Time: Nov 27, 2023 at 12:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -89,7 +89,8 @@ CREATE TABLE `tb_admin.empreendimentos` (
 --
 
 INSERT INTO `tb_admin.empreendimentos` (`id`, `nome`, `tipo`, `preco`, `imagem`, `order_id`) VALUES
-(1, 'WimFin', 'residencial', '1.111.111,11', '655e0e2f181de.jpg', 1);
+(1, 'WimFin', 'residencial', '1.111.111,11', '655e0e2f181de.jpg', 1),
+(2, 'empreendimento 2', 'residencial', '700,02', '65635d53a04f1.png', 2);
 
 -- --------------------------------------------------------
 
@@ -147,8 +148,8 @@ CREATE TABLE `tb_admin.imoveis` (
   `id` int(11) NOT NULL,
   `empreendimento_id` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
-  `preco` varchar(20) NOT NULL,
-  `area` varchar(20) NOT NULL
+  `preco` decimal(10,2) NOT NULL,
+  `area` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -156,8 +157,9 @@ CREATE TABLE `tb_admin.imoveis` (
 --
 
 INSERT INTO `tb_admin.imoveis` (`id`, `empreendimento_id`, `nome`, `preco`, `area`) VALUES
-(2, 1, 'produto 1', '111111111.11', '1111'),
-(3, 1, 'produto 2', '22222.22', '222');
+(2, 1, 'produto 1', 99999.99, 1111),
+(3, 1, 'produto 2', 22222.22, 222),
+(4, 2, 'imovel 2-2', 123.00, 123);
 
 -- --------------------------------------------------------
 
@@ -180,7 +182,9 @@ INSERT INTO `tb_admin.imoveis_imagens` (`id`, `imovel_id`, `imagem`) VALUES
 (2, 3, '655e10130cd80.png'),
 (3, 3, '655f646dafc67.jpg'),
 (4, 3, '655f646db02f2.jpg'),
-(5, 3, '655f646db0727.png');
+(5, 3, '655f646db0727.png'),
+(6, 4, '6562846dcfc8b.jpg'),
+(7, 4, '6562846dd00c9.png');
 
 -- --------------------------------------------------------
 
@@ -206,7 +210,10 @@ INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
 (320, '::1', '2023-11-22 21:48:58', 2147483647),
 (322, '::1', '2023-11-24 12:46:17', 65608),
 (323, '::1', '2023-11-24 15:18:40', 6560),
-(324, '::1', '2023-11-24 15:18:40', 6560);
+(324, '::1', '2023-11-24 15:18:40', 6560),
+(325, '::1', '2023-11-26 01:27:32', 6562008),
+(326, '::1', '2023-11-26 01:27:32', 6562008),
+(327, '::1', '2023-11-26 15:34:27', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -254,7 +261,12 @@ INSERT INTO `tb_admin.visits` (`id`, `ip`, `day`) VALUES
 (5, '::1', '2023-11-21'),
 (6, '::1', '2023-11-22'),
 (7, '::1', '2023-11-22'),
-(8, '::1', '2023-11-24');
+(8, '::1', '2023-11-24'),
+(9, '::1', '2023-11-25'),
+(10, '::1', '2023-11-25'),
+(11, '::1', '2023-11-25'),
+(12, '::1', '2023-11-26'),
+(13, '::1', '2023-11-26');
 
 -- --------------------------------------------------------
 
@@ -453,7 +465,7 @@ ALTER TABLE `tb_admin.clientes-financeiro`
 -- AUTO_INCREMENT for table `tb_admin.empreendimentos`
 --
 ALTER TABLE `tb_admin.empreendimentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_admin.estoque`
@@ -471,19 +483,19 @@ ALTER TABLE `tb_admin.estoque_imagens`
 -- AUTO_INCREMENT for table `tb_admin.imoveis`
 --
 ALTER TABLE `tb_admin.imoveis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_admin.imoveis_imagens`
 --
 ALTER TABLE `tb_admin.imoveis_imagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_admin.online`
 --
 ALTER TABLE `tb_admin.online`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=325;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=328;
 
 --
 -- AUTO_INCREMENT for table `tb_admin.users`
@@ -495,7 +507,7 @@ ALTER TABLE `tb_admin.users`
 -- AUTO_INCREMENT for table `tb_admin.visits`
 --
 ALTER TABLE `tb_admin.visits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tb_site.depoimentos`
