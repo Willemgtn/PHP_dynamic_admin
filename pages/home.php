@@ -18,8 +18,6 @@
         <div class="w50 f-left">
             <h2><?php echo $sql['authorname'] ?></h2>
             <p> <?php echo $sql['authordescription'] ?></p>
-            <!-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit natus accusamus omnis optio distinctio? Ipsum voluptatum consequuntur odit optio et? Natus veniam nostrum, perferendis quidem ipsa doloribus esse ab at?</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit natus accusamus omnis optio distinctio? Ipsum voluptatum consequuntur odit optio et? Natus veniam nostrum, perferendis quidem ipsa doloribus esse ab at?</p> -->
         </div>
         <div class="w50 f-right">
             <img class="f-right img-placeholder" src="./img/default_profile.webp" alt="IMG PLACEHOLDER">

@@ -7,6 +7,7 @@ class FileUpload
 
     static function validadeImage($fileInputName, $debug = false)
     {
+        if (!$_FILES[$fileInputName]["name"]){return false;}
         $uploadOk = 1;
         if ($debug) {
             print_r($fileInputName);

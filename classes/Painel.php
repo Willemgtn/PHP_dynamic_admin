@@ -14,11 +14,11 @@ class Painel
     }
     static function logout()
     {
-        // session_destroy();
         unset($_SESSION['login']);
         unset($_SESSION['user']);
         unset($_SESSION['pass']);
-
+        
+        session_destroy();
         // setcookie("remember", true, time()-1, '/');
         header('Location: ./');
         die();

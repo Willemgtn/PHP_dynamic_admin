@@ -90,3 +90,5 @@
         <div class="clear"></div>
     </header>
     <?php print_r($_SESSION); ?>
+    <br>
+    <?php print_r($_GET); ?>
