@@ -154,7 +154,9 @@ if (isset($_GET['logout'])) {
                     <div class="menu-btn">
                         <i class="fa-solid fa-bars"></i>
                     </div>
+                  
                     <div class="logout f-right">
+                        <a href="./chat"> <i class="fa-regular fa-comments"></i> Chat</a>
                         <a href="./?logout"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
                     </div>
                 </div>
@@ -238,6 +240,7 @@ if (isset($_GET['logout'])) {
 
     Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery-ui.min.js', 'empreendimentos.js'], 'empreendimentos', false);
     Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'imoveis', false);
+    Painel::loadJS(['chat.js', 'jquery.form.js'], 'chat', false);
     ?>
 
     <script>

@@ -14,15 +14,19 @@ if (isset($_POST['login'])) {
     if ($sql->rowCount() == 1) {
         $info = $sql->fetch();
         // sucessful login
+        $online = $_SESSION['online'];
+        $_SESSION = $info;
         $_SESSION['login'] = true;
-        $_SESSION['user'] = $user;
-        $_SESSION['pass'] = $pass;
-        $_SESSION['avatar'] = $info['avatar'];
-        $_SESSION['name'] = $info['name'];
-        $_SESSION['role'] = $info['role'];
+        $_SESSION['online'] = $online;
+        // $_SESSION['user'] = $user;
+        // $_SESSION['pass'] = $pass;
+        // $_SESSION['avatar'] = $info['avatar'];
+        // $_SESSION['name'] = $info['name'];
+        // $_SESSION['role'] = $info['role'];
         if (isset($_POST['remindMe'])) {
             setcookie('remember', true, time() + (60 * 60 * 24), '/');
             setcookie('user', $user, time() + (60 + 60 + 24), '/');
+            setcookie('pass', $pass, time() + (60 + 60 + 24), '/');
         }
         header('Location: ./');
         echo '<script>window.location.replace("./"); </script>';
