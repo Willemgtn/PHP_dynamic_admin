@@ -156,6 +156,7 @@ if (isset($_GET['logout'])) {
                     </div>
                   
                     <div class="logout f-right">
+                        <a href="./calendar"> <i class="fa-regular fa-calendar-days"></i> Calendario</a>
                         <a href="./chat"> <i class="fa-regular fa-comments"></i> Chat</a>
                         <a href="./?logout"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
                     </div>
@@ -241,6 +242,7 @@ if (isset($_GET['logout'])) {
     Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery-ui.min.js', 'empreendimentos.js'], 'empreendimentos', false);
     Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'imoveis', false);
     Painel::loadJS(['chat.js', 'jquery.form.js'], 'chat', false);
+    Painel::loadJS(['calendar.js', 'jquery.form.js'], 'calendar', false);
     ?>
 
     <script>
