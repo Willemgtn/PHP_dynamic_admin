@@ -31,10 +31,10 @@
     // $('html, body').animate({scrollTop: $('footer').offset().top}, 2000)
 </script>
 <!-- <script src="./js/slider.js"></script> -->
-<script src="./js/animarEspecialidades.js"></script>
-<script src="./js/ajaxForm.js"></script>
+<!-- <script src="./js/animarEspecialidades.js"></script>
+<script src="./js/ajaxForm.js"></script> -->
 <?php
-
+Painel::loadJS(['animarEspecialidades.js', 'ajaxForm.js'], false);
 Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery.zebra.dataPicker.js', 'jquery.form.js'], 'imoveis', true);
 ?>
 </body>

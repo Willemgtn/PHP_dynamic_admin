@@ -24,11 +24,15 @@ if (isset($_GET['logout'])) {
     <!-- for the most recent version of the "bootstrap" theme -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/zebra_datepicker@latest/dist/css/bootstrap/zebra_datepicker.min.css"> -->
 
-    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="../css/fontawesome/css/all.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/newform.css">
-    <link rel="stylesheet" href="./css/aside.css">
+    <link rel="stylesheet" href="./css/aside.css"> -->
+    <?php 
+    Painel::loadCss(['style.css', 'main.css', 'newform.css', 'aside.css' ], '*', true);
+    Painel::loadCss(['fontawesome/css/all.css'], '*', false);
+    ?>
     <style>
         @media screen and (max-width: 500px) {
             aside.menu {
@@ -236,13 +240,13 @@ if (isset($_GET['logout'])) {
 
     <?php
     // Loading page specific js scripts
-    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery.zebra.dataPicker.js', 'jquery.form.js', 'ajax.js'], 'clientes', false);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery.zebra.dataPicker.js', 'jquery.form.js', 'ajax.js'], 'clientes', true);
     // Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.form.js', 'ajax.js', 'cliente.js'], 'clients/add', true);
 
-    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery-ui.min.js', 'empreendimentos.js'], 'empreendimentos', false);
-    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'imoveis', false);
-    Painel::loadJS(['chat.js', 'jquery.form.js'], 'chat', false);
-    Painel::loadJS(['calendar.js', 'jquery.form.js'], 'calendar', false);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js', 'jquery-ui.min.js', 'empreendimentos.js'], 'empreendimentos', true);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'imoveis', true);
+    Painel::loadJS(['chat.js', 'jquery.form.js'], 'chat', true);
+    Painel::loadJS(['calendar.js', 'jquery.form.js'], 'calendar', true);
     ?>
 
     <script>

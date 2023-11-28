@@ -94,17 +94,22 @@ $maxItemsPerPage = 6;
             $nome = $_POST['nome'];
             $tipo = $_POST['tipo'];
             $preco = $_POST['preco'];
-            $imagem = $_FILES['img'];
+            $imagem = $_FILES['img'] ?: false;
             $old_image = Sql::connect()->query("SELECT imagem FROM `$pageTable` WHERE id = $edit")->fetch()['imagem'];
             $ok = true;
+            // echo '<hr><pre>';
+            // print_r($imagem);
+            // echo ($imagem['name'] ?: '$imagem->name != null');
+            // echo '</pre><hr>';
 
-            $imagem = FileUpload::validadeImage('img') ? $imagem : null;
-            if ($imagem) {
+            $imagem = $imagem['error'] == 0 ? $imagem : false;
+            // $imagem = FileUpload::validadeImage('img') ? $imagem : null;
+            if ($imagem and  FileUpload::validadeImage('img')) {
                 $imagem = FileUpload::uploadImage('img');
                 unlink('uploads/' . $old_image);
             }
 
-            $imagem = $imagem ?? $old_image;
+            $imagem = $imagem ?: $old_image;
 
             $sql = Sql::connect()->prepare("UPDATE `$pageTable` SET nome=?, tipo=?, preco=?, imagem=? WHERE id = ?");
             if ($sql->execute([$nome, $tipo, $preco, $imagem, $edit])) {

@@ -10,7 +10,7 @@ const DB_PASS = '';
 
 const TINYMCE_API_KEY = 'cv6l1xto30rcar7vsu0zfpfra79w985ukor50ciibny2mfb4';
 
-const INCLUDE_PATH = './';
+const INCLUDE_PATH = 'http://localhost/PHP_Web_dev/';
 
 const EMAIL_USERNAME = '';
 const EMAIL_PASSWORD = '';
