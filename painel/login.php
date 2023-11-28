@@ -90,9 +90,9 @@
 
         <form method="post" action="">
             <label for="username">Username: </label>
-            <input type="text" name="username" id="username" value="<?php echo $_COOKIE['user'] ?: '' ?>" placeholder="Username">
+            <input type="text" name="username" id="username" value="<?php echo $_COOKIE['user'] ?? '' ?>" placeholder="Username">
             <label for="password">Password: </label>
-            <input type="password" name="password" id="password" value="<?php echo $_COOKIE['pass']?: '' ?>" placeholder="Password">
+            <input type="password" name="password" id="password" value="<?php echo $_COOKIE['pass']?? '' ?>" placeholder="Password">
 
             <input type="submit" name="login" value="Login">
             <div class="w-50" style="display: inline-block; float: right;">
