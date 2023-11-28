@@ -23,6 +23,10 @@ class homeController
                 include("./pages/" . $_GET["url"] . ".html");
             } elseif (file_exists("./pages/" . $_GET["url"] . ".php")) {
                 include("./pages/" . $_GET["url"] . ".php");
+            } else if (file_exists("./pages/" . explode('/', $_GET['url'])[0] . ".html")){
+                include("./pages/" . explode('/', $_GET['url'])[0] . ".html");
+            } else if (file_exists("./pages/" . explode('/', $_GET['url'])[0] . ".php")){
+                include("./pages/" . explode('/', $_GET['url'])[0] . ".php");
             } else {
                 include("./pages/404.html");
             }
