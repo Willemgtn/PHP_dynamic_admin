@@ -76,7 +76,7 @@
           $post = ['nome' => $_POST['nome'], 'msg' => $_POST['msg']];
           $this->Model->createPost($this->tabela, $this->url, $post);
         }
-        print_r($post_info);
+        // print_r($post_info);
         $this->Model->listarPosts($this->tabela, $this->url);
       } else {
         echo "<script>window.location='" . INCLUDE_PATH . "forum/" . $this->url[1] . "'</script>";
@@ -141,7 +141,7 @@
       
       $forum = $this->existe($table[1], $url[1]);
       $topico = $this->existe($table[2], $url[2]);
-      print_r($topico);
+      // print_r($topico);
 
       $this->view->postPage($forum, $topico);
       $this->view->renderPosts($url[2], $sql);

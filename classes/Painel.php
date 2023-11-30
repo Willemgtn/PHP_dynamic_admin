@@ -121,4 +121,12 @@ class Painel
     {
         echo '<script>location.href="' . $url . '"</script>';
     }
+    static function converterMoedaBr($valor){
+      return  number_format(@$valor, 2, ',', '.');
+    }
+    static function formatarMoedaBr($num){
+      $num = str_replace('.', '', $num);
+      $num = str_replace(',', '.', $num);
+      return  $num;
+    }
 }
