@@ -55,7 +55,7 @@
       
     }
     public function finalizar(){
-      echo "finalizar";
+      // echo "finalizar";
       $this->Model->listarProdutosCarrinho($this->tabela);
     }
   }
@@ -286,6 +286,10 @@
       
       <?php
     }
+    public function footer(){
+      echo "<script src='https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js'></script>";
+      echo "<script src='" . INCLUDE_PATH . "js/loja.js'></script>";
+    }
     public function produtosBoxes($produtos){
       $this->header();
       echo '<div class="lista-itens container">';
@@ -312,11 +316,11 @@
       echo '<h2> <i class="fa fa-shopping-cart"></i> Carrinho : </h2>';
       echo '<table>';
       echo "<tr> 
-            <td> </td> 
-            <td><p> Descricao: </p></td> 
-            <td><p> Preço: </p></td> 
-            <td><p> Qt: </p></td> 
-            <td> </td> 
+              <td> </td> 
+              <td><p> Descricao: </p></td> 
+              <td><p> Preço: </p></td> 
+              <td><p> Qt: </p></td> 
+              <td> </td> 
             </tr>";
 
       foreach ($carrinho as $key => $value) {
@@ -330,16 +334,15 @@
         echo '<tr>';
         $total += $value['preco_total'];
       }
-
-
       echo '</table></div>';
 
       echo "<div class='finalizar-pedido container'>";
-      echo "<h2> Total: R$ ".Painel::converterMoedaBr($total)."</h2>";
-      echo "<div class='clear'>";
-      echo "<a href='' class='btn-pagamento'>Pagar agora!</a>";
+        echo "<h2> Total: R$ ".Painel::converterMoedaBr($total)."</h2>";
+        echo "<div class='clear'>";
+        echo "<a href='' class='btn-pagamento'>Pagar agora!</a>";
       echo "</div>";
 
+      $this->footer();
     }
     
   }
