@@ -247,6 +247,7 @@ if (isset($_GET['logout'])) {
     Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'imoveis', true);
     Painel::loadJS(['chat.js', 'jquery.form.js'], 'chat', true);
     Painel::loadJS(['calendar.js', 'jquery.form.js'], 'calendar', true);
+    Painel::loadJS(['jquery.mask.js', 'helperMask.js', 'jquery.maskMoney.js'], 'estoque', true);
     ?>
 
     <script>

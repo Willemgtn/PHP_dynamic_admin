@@ -29,6 +29,7 @@ $maxItemsPerPage = 6;
             $comprimento = $_POST['comprimento'];
             $peso = $_POST['peso'];
             $quantidade = $_POST['quantidade'];
+            $preco = Painel::formatarMoedaBr($_POST['preco']);
 
             $ok = true;
 
@@ -56,8 +57,8 @@ $maxItemsPerPage = 6;
                     // print_r($imagens);
                     // echo "</pre>";
 
-                    $sql = Sql::connect()->prepare("INSERT INTO `$pageTable` VALUES (null,?,?,?,?,?,?,?)");
-                    $sql->execute([$nome, $descricao, $largura, $altura, $comprimento, $peso, $quantidade]);
+                    $sql = Sql::connect()->prepare("INSERT INTO `$pageTable` VALUES (null,?,?,?,?,?,?,?,?)");
+                    $sql->execute([$nome, $descricao, $largura, $altura, $comprimento, $peso, $quantidade, $preco]);
                     $lastInsertedId = Sql::connect()->lastInsertId();
                     foreach ($imagens as $key => $value) {
                         Sql::connect()->exec("INSERT INTO `$pageTableImg` VALUES (null,$lastInsertedId,'$value[upload_name]')");
@@ -88,6 +89,8 @@ $maxItemsPerPage = 6;
             <input type="number" name="peso" id="" min="0" max="900" step="5" value="0">
             <label for="quantidade">Quantidade:</label>
             <input type="number" name="quantidade" id="" min="0" max="900" step="5" value="0">
+            <label for="preco">Preço:</label>
+            <input type="text" name="preco" mask="brl" value="0">
             <!-- </div> -->
 
             <label for="img">Selecione as imagens:</label>
@@ -118,11 +121,12 @@ $maxItemsPerPage = 6;
             $comprimento = $_POST['comprimento'];
             $peso = $_POST['peso'];
             $quantidade = $_POST['quantidade'];
+            $preco = Painel::formatarMoedaBr($_POST['preco']);
 
             $ok = true;
 
-            $sql = Sql::connect()->prepare("UPDATE `$pageTable` SET nome=?, descricao=?, largura=?, altura=?, comprimento=?, peso=?, quantidade=? WHERE id = ?");
-            $sql->execute([$nome, $descricao, $largura, $altura, $comprimento, $peso, $quantidade, $edit]);
+            $sql = Sql::connect()->prepare("UPDATE `$pageTable` SET nome=?, descricao=?, largura=?, altura=?, comprimento=?, peso=?, quantidade=?, preco=? WHERE id = ?");
+            $sql->execute([$nome, $descricao, $largura, $altura, $comprimento, $peso, $quantidade, $preco, $edit]);
 
             // $images;
             if ($_FILES['img']['name'][0] != '') {
@@ -239,6 +243,8 @@ $maxItemsPerPage = 6;
             <input type="number" name="peso" id="" min="0" max="900" step="5" value="<?php echo $productInfo['peso'] ?>">
             <label for="quantidade">Quantidade:</label>
             <input type="number" name="quantidade" id="" min="0" max="900" step="5" value="<?php echo $productInfo['quantidade'] ?>">
+            <label for="preco">Preço:</label>
+            <input type="text" name="preco" mask="brl" value="<?php echo $productInfo['preco'] ?>">
             <!-- </div> -->
 
             <label for="img">Selecione as imagens:</label>
@@ -343,19 +349,34 @@ $maxItemsPerPage = 6;
         <div class="cardsWrapper">
             <!-- template -->
             <?php
-            foreach ($produtos as $value) {
+            foreach ($produtos as $key => $value) {
             ?>
 
-                <div class="roundedBorders">
+                <div class="roundedBorders"> 
+                  <div id="produto_<?php echo $value['id']?>" class="img carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
                     <?php
                     $sql = Sql::connect()->prepare("SELECT imagem FROM `$pageTableImg` WHERE produto_id = $value[id]");
                     $sql->execute();
                     $sql = $sql->fetchAll();
                     // print_r($sql);
-                    foreach ($sql as $key => $img) {
-                        echo "<img src='./uploads/$img[imagem]'>";
+                    foreach ($sql as $img_key => $img) {
+                      $active = $img_key == array_key_first($sql) ? ' active' : '' ;
+                      echo '<div class="carousel-item'.$active.'"> <img src="./uploads/' . $img['imagem'] . '" class="d-block w-100 alt="..."></div>';
+                        // echo "<img src='./uploads/$img[imagem]'>";
                     }
                     ?>
+                          <button class="carousel-control-prev" type="button" data-bs-target="#produto_<?php echo $value['id']?>" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                         </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#produto_<?php echo $value['id']?>" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                            </button>
+                            </div>
+                        </div>
+
                     <hr>
                     <ul>
                         <li><i class="fa-solid fa-pencil"></i>
@@ -390,6 +411,11 @@ $maxItemsPerPage = 6;
                             <strong>Peso:</strong>
                             <!-- PHP -->
                             <?php echo ucfirst($value['peso']) ?>
+                        </li>
+                        <li><i class="fa-solid fa-pencil"></i>
+                            <strong>Preço:</strong>
+                            <!-- PHP --> R$ 
+                            <?php echo ucfirst($value['preco']) ?>
                         </li>
                         <li>
                             <strong>
