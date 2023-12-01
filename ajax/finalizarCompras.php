@@ -8,6 +8,7 @@ $t_loja = [
 $data['token'] = PAGSEGURO_TOKEN;
 $data['email'] = PAGSEGURO_EMAIL;
 $data['currency'] = 'BRL';
+$data['notificationURL'] = INCLUDE_PATH . 'ajax/pagseguroRetorno.php';
 $data['reference'] = uniqid();
 
 $index = 1;
@@ -19,7 +20,7 @@ foreach ($carrinho as $c_key => $c_value) {
   $sql = $sql->fetch(PDO::FETCH_ASSOC);
   $sql['qt'] = $c_value;
 
-  $data["itemId$index"] = $index;
+  $data["itemId$index"] = $sql['id'];             //product_id ??
   $data["itemQuantity$index"] = $c_value;
   $data["itemDescription$index"] = $sql['nome'];
   $data["itemAmount$index"] = $sql['preco'];
