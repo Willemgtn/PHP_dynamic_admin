@@ -93,6 +93,7 @@
                     <li><a href="<?php echo INCLUDE_PATH?>imoveis">Imoveis</a></li>
                     <li><a href="<?php echo INCLUDE_PATH?>forum">Forum</a></li>
                     <li><a href="<?php echo INCLUDE_PATH?>loja">Loja</a></li>
+                    <li><a href="<?php echo INCLUDE_PATH?>social">Social</a></li>
                 </ul>
 
             </nav>
