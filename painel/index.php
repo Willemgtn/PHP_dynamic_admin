@@ -25,8 +25,8 @@ if (isset($_POST['login'])) {
         // $_SESSION['role'] = $info['role'];
         if (isset($_POST['remindMe'])) {
             setcookie('remember', true, time() + (60 * 60 * 24), '/');
-            setcookie('user', $user, time() + (60 + 60 + 24), '/');
-            setcookie('pass', $pass, time() + (60 + 60 + 24), '/');
+            setcookie('user', $user, time() + (60 * 60 * 24), '/');
+            setcookie('pass', $pass, time() + (60 * 60 * 24), '/');
         }
         header('Location: ./');
         echo '<script>window.location.replace("./"); </script>';

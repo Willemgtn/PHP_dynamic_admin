@@ -107,7 +107,7 @@
       $this->view->produtosBoxes($sql, $tabela);
     }
     public function listarProdutosCarrinho($tabela){
-      $carrinho = $_SESSION['carrinho'];
+      $carrinho = $_SESSION['carrinho'] ?? array();
       $cart = array();
 
       foreach ($carrinho as $c_key => $c_value) {

@@ -97,7 +97,7 @@
             <input type="submit" name="login" value="Login">
             <div class="w-50" style="display: inline-block; float: right;">
                 <label for="remindMe">Remember ?</label>
-                <input type="checkbox" name="remindMe" id="remindMe" value="bla" style="height: 1em; width: 1em;" <?php echo ($_COOKIE['remember'] == 0) ?: 'checked';?>>
+                <input type="checkbox" name="remindMe" id="remindMe" value="bla" style="height: 1em; width: 1em;" <?php  if($_COOKIE['remember'] ?? false) echo 'checked' ;?>>
             </div>
         </form>
     </div>

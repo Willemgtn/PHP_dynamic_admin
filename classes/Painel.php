@@ -129,4 +129,7 @@ class Painel
       $num = str_replace(',', '.', $num);
       return  $num;
     }
+    static function alertJs(string $msg){
+      echo "<script>alert('$msg')</script>";
+    }
 }
