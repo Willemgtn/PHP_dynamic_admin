@@ -13,7 +13,7 @@ $t_social = [
     // if (isAmigo($idAmigo, $t_social)) {return false;}
     $sql = Sql::connect()->prepare("SELECT * FROM $t_social[3] WHERE (id_from=? AND id_to=? AND status=0)");
     $sql->execute(array($_SESSION['social']['id'], $idAmigo));
-    if($sql->rowCount() ==1){
+    if($sql->rowCount() == 1){
       return true;
     } else {
       return false;

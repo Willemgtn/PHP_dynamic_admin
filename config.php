@@ -2,6 +2,7 @@
 include('classes/autoload.php');
 include('vendor/autoload.php');
 session_start();
+date_default_timezone_set('America/Bahia');
 
 const DB_HOST = 'localhost';
 const DB_DBNAME = 'php_web_dev';
@@ -15,3 +16,6 @@ const INCLUDE_PATH = 'http://localhost/PHP_Web_dev/';
 const EMAIL_USERNAME = '';
 const EMAIL_PASSWORD = '';
 const EMAIL_HOST = '';
+
+const PAGSEGURO_EMAIL = '';
+const PAGSEGURO_TOKEN = '';
